@@ -1,0 +1,93 @@
+
+
+
+{{data | date:'y-M-d'}}
+
+<h2>Test d'hore disponobles amb restriccions</h2>
+<table class="table  table-bordered"><thead>
+<th>Data</th>
+<th>Adults</th>
+<th>Nens</th>
+
+<th>Cotxets</th>
+
+
+</thead>
+<tbody>
+    <tr>
+<td>
+  <input [(ngModel)]="restric.restriccions_data"    (xxxchange)="changeVal()" placeholder="Data" class="form-control" ><br>
+  
+  
+</td>
+
+
+<td>
+
+  
+
+   <select [(ngModel)]="restric.restriccions_adults" (xxxchange)="changeVal()" placeholder="Adults"   class="form-control" > // value is a string or number
+    <option *ngFor="let adult of comboAdults" [value]="adult.val">{{adult.name}}</option>
+</select>
+</td>
+<td>
+  
+   <select [(ngModel)]="restric.restriccions_nens" (xxxchange)="changeVal()" placeholder="Nens"   class="form-control" > // value is a string or number
+    <option *ngFor="let nen of comboNens" [value]="nen.val">{{nen.name}}</option>
+</select>
+   
+</td>
+<td>
+    
+   <select [(ngModel)]="restric.restriccions_cotxets" (xxxchange)="changeVal()" placeholder="Cotxets"   class="form-control" > // value is a string or number.val
+    <option *ngFor="let cotxet of comboCotxets" [value]="cotxet.val">{{cotxet.name}}</option>
+</select>
+</td>
+<td>
+<button  (click)="changeVal();$event.stopPropagation()"  class="btn btn-info" >Hores disponbles</button>
+
+</td>
+
+
+    </tr>
+
+</tbody>
+</table>
+<ul class="btn-group">
+
+        <li *ngFor="let hora of hores" class="btn btn-primary">{{hora}}</li>
+
+</ul>
+
+<br>
+<br>
+
+<hr>
+<h3>Regles que hi intervenen</h3>
+<div class="well">
+<ul class=" list-group">
+
+        <li *ngFor="let rule of rules"  class="list-group-item list-group-item-info">
+            {{rule.restriccions_id}} |
+            {{rule.restriccions_descripcio}}|
+            <{{rule.restriccions_data}}···
+            {{rule.restriccions_datafi}}> | 
+            {{rule.restriccions_dies}} | 
+            {{rule.restriccions_adults}} |
+            {{rule.restriccions_nens}} |
+            {{rule.restriccions_cotxets}} 
+             >>>>>>> {{rule.restriccions_hora}}
+            
+            </li>
+
+</ul>
+</div>
+<br>
+<br>
+
+<hr>
+<h3>Query cerca rules actives</h3>
+<div id="test-query"  class="well">
+{{query}}
+
+    </div>

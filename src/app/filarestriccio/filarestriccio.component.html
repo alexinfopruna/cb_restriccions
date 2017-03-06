@@ -1,0 +1,79 @@
+<td>
+
+
+    <input *ngIf="!insert" type="checkbox" (change)="changeVal()" [(ngModel)]="restric.restriccions_active"></td>
+<td>
+    <span *ngIf="!insert">{{restric.restriccions_id}}</span>
+</td>
+<!-- 
+<td>
+   <input *ngIf="!insert"  [(ngModel)]="restric.restriccions_description"   (change)="changeVal()" class="form-control"  placeholder="Descripció" [disabled]="!restric.restriccions_active && false"> 
+</td>
+-->
+<td>
+<!--
+<input class="xxform-control" type="checkbox" name="options2" [checked]="restric.restriccions_data == '2011-01-01'" (change)="changeVal($event.target)" [disabled]="!restric.restriccions_active && false"  />
+-->
+
+    <input *ngIf="restric.restriccions_data != 'xxx2011-01-01'" [(ngModel)]="restric.restriccions_data" (change)="changeVal()" class="form-control"
+        placeholder="Data inici" [disabled]="!restric.restriccions_active && false"><br>
+        <input *ngIf="restric.restriccions_data != restric.restriccions_datafi" [(ngModel)]="restric.restriccions_datafi" (change)="changeVal()"
+            class="form-control" placeholder="Data final" [disabled]="!restric.restriccions_active && false">
+</td>
+
+<td>
+    <div class="form-group" *ngIf="restric.restriccions_data == '2011-01-01' || restric.restriccions_data != restric.restriccions_datafi">
+
+
+        <label *ngFor="let option of comboDies;let i = index" class="form-control" [class.btn-success]="restric.restriccions_dies[i+1]"   >
+        <input type="checkbox" 
+        name="options" value="option"  
+        [(ngModel)]="restric.restriccions_dies[i+1]"  
+        (change)="changeVal()" 
+         
+        [disabled]="!restric.restriccions_active && false"/> {{option.name}} 
+    </label>
+    </div>
+</td>
+
+<td>
+    <!--
+ <select [hidden]="true" [disabled]="!restric.restriccions_active && false" class="form-control" > // value is a string or number
+    <option *ngFor="let oper of comboOper" >{{oper.name}}</option>
+</select>
+-->
+    <select [(ngModel)]="restric.restriccions_adults" (change)="changeVal()" [disabled]="!restric.restriccions_active && false"
+        class="form-control"> // value is a string or number
+        <option *ngFor="let adult of comboAdults" [value]="adult.name">{{adult.name}}</option>
+        </select>
+</td>
+
+<td>
+
+    <select [(ngModel)]="restric.restriccions_nens" (change)="changeVal()" [disabled]="!restric.restriccions_active && false"
+        class="form-control"> // value is a string or number
+        <option *ngFor="let nen of comboNens" [value]="nen.name">{{nen.name}}</option>
+        </select>
+
+</td>
+<td>
+
+    <select [(ngModel)]="restric.restriccions_cotxets" (change)="changeVal()" [disabled]="!restric.restriccions_active && false"
+        class="form-control"> // value is a string or number.val
+        <option *ngFor="let cotxet of comboCotxets" [value]="cotxet.name">{{cotxet.name}}</option>
+        </select>
+</td>
+<td>
+
+    <select [(ngModel)]="restric.restriccions_hora" (change)="changeVal()" [disabled]="!restric.restriccions_active && false"
+        class="form-control"> // value is a string or number
+        <option *ngFor="let hora of comboHores" [value]="hora.val">{{hora.name}}</option>
+        </select>
+</td>
+
+<td>
+    <button *ngIf="!insert" (click)="deleteRestriccio(restric);$event.stopPropagation()" class="btn btn-danger">Delete</button>
+    <!--      <button  *ngIf="dirty && false" (click)="updateRestriccio(restric);$event.stopPropagation()">Save</button>-->
+    <button *ngIf="dirty && insert" (click)="insertRestriccio(restric);$event.stopPropagation()" class="btn btn-primary">Add</button>
+
+</td>

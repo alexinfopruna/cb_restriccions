@@ -1,0 +1,42 @@
+<td>
+  <input [ngModel]="restric.restriccions_data "  (ngModelChange)="restric.restriccions_data=$event"   (change)="changeVal()" placeholder="Data inici" [disabled]="disabled"><br>
+ <input [ngModel]="restric.restriccions_datafi"  (ngModelChange)="restric.restriccions_datafi=$event"    placeholder="Data final" [disabled]="disabled">  
+<!--  
+  <input [(ngModel)]="restric.restriccions_data "  (change)="changeVal()" placeholder="name" [disabled]="disabled"><br>
+  <input [(ngModel)]="restric.restriccions_datafi" (change)="changeVal()"  placeholder="name" [disabled]="disabled">  
+-->
+</td>
+
+
+<td>
+   <select [(ngModel)]="restric.restriccions_adults" (change)="changeVal()" > // value is a string or number
+     <option *ngFor="let adult of comboAdults" [value]="adult.name">{{adult.name}}</option>
+  </select>
+</td>
+<td>
+  
+   <select [(ngModel)]="restric.restriccions_nens" (change)="changeVal()"> // value is a string or number
+     <option *ngFor="let nen of comboNens" [value]="nen.name">{{nen.name}}</option>
+   </select>
+   
+</td>
+<td> 
+   <select [(ngModel)]="restric.restriccions_cotxets" (change)="changeVal()" > // value is a string or number.val
+     <option *ngFor="let cotxet of comboCotxets" [value]="cotxet.name">{{cotxet.name}}</option>
+   </select>
+</td>
+<td>
+    
+   <select [(ngModel)]="restric.restriccions_hora" (change)="changeVal()" > // value is a string or number
+     <option *ngFor="let hora of comboHores" [value]="hora.val">{{hora.name}}</option>
+   </select>
+</td>
+
+<td>
+    <button  (click)="clearFiltre();$event.stopPropagation()">Reset</button>
+
+
+</td>
+
+
+

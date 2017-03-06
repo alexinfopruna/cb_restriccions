@@ -1,0 +1,20 @@
+h1{
+    font-size: 52px;
+}
+
+.caixa{
+padding:20px;
+margin:20px;
+background-color: LightCyan;
+color: DimGray;
+
+}
+.enabled{background-color: #d9edf7;}
+
+.xxxxxodd{background-color: lightblue;}
+.xxxxxxeven{background-color: lightblue;}
+.xxxxxxeven{background-color: lighten(red, 20%);}
+.base{background-color:#dff0d8;}
+.xxxxbase{background-color: lighten(lightgreen, 20%);}
+.disabled{background-color: #eee;color:darkgrey}
+label.form-control{display:inline !important}

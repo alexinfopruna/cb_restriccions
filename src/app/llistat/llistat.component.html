@@ -1,0 +1,71 @@
+<h3 [class]="cls">
+  {{title}}
+</h3>
+
+<nav>
+  <a href="/llistat#insert" class="btn btn-success">Afegeix restricció</a>
+</nav>
+
+<!--
+<app-filtre  (onFiltre)="onFiltre($event)"></app-filtre>
+ -->
+ <div><br><br></div>
+
+<table class="table  table-bordered">
+<thead>
+  <tr>
+  <th>Actiu</th>
+  <th>Id</th>
+  <!--<th>Descripció</th>-->
+  <th>Data</th>
+  <th>Dies</th>
+  <th>Adults</th>
+  <th>Nens</th>
+  <th>Cotxets</th>
+  <th>Hora</th>
+  </tr>
+</thead>
+<tbody>
+
+
+
+
+    <tr app-filarestriccio  
+    *ngFor="let restriccio of restriccions; let i = index; let even = even; let odd = odd" 
+    [restric]="restriccio"
+    [ngClass]="{'enabled': restriccio.restriccions_active, 'even':even }"
+    [class.disabled]="!restriccio.restriccions_active"
+    [class.base]="restriccio.restriccions_data == '2011-01-01'"
+
+    (onDelete)="onDelete($event)"
+    (onUpdate)="onUpdate($event)"
+    ></tr>
+  
+
+</tbody>
+</table>
+
+<a id="insert"></a>
+
+<div class="well">
+  <h3>Crea nova restricció</h3>
+<table>
+<thead>
+  <tr>
+  <th></th>
+  <th></th>
+  <!--<th>Descripció</th>-->
+  <th>Data</th>
+  <th>Dies</th>
+  <th>Adults</th>
+  <th>Nens</th>
+  <th>Cotxets</th>
+  <th>Hora</th>
+  </tr>
+</thead>
+<tbody>
+      <tr app-filarestriccio [insert]="true"   [restric]="restriccioNew"   (onInsert)="onInsert($event)"    ></tr>
+      
+</tbody>
+</table>
+</div>

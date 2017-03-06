@@ -3,18 +3,35 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { AppComponent } from './app.component';
+import { RestriccionsService } from './restriccions.service';
+import { RestriccionRoutingModule }     from './restriccionrouting/restriccionrouting.module';
+
+// Import the ButtonsModule...
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { TestComponent } from './test/test.component';
+import { HomeComponent } from './home/home.component';
+import { LlistatComponent } from './llistat/llistat.component';
+import { FilarestriccioComponent } from './filarestriccio/filarestriccio.component';
+import { FiltreComponent } from './filtre/filtre.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    LlistatComponent,
+    FilarestriccioComponent,
+    TestComponent,
+    HomeComponent,
+    FiltreComponent    
   ],
+  
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    RestriccionRoutingModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  
+  providers: [RestriccionsService],
+  bootstrap: [HomeComponent]
 })
 export class AppModule { }
+
