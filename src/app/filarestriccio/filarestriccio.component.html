@@ -1,8 +1,10 @@
 <td>
+<label *ngIf="!insert" class="form-control" [class.btn-success]="restric.restriccions_active"   >
+           <input  type="checkbox" (change)="changeVal()" [(ngModel)]="restric.restriccions_active">
 
-
-    <input *ngIf="!insert" type="checkbox" (change)="changeVal()" [(ngModel)]="restric.restriccions_active"></td>
-<td>
+    </label>
+   </td>     
+ <td>
     <span *ngIf="!insert">{{restric.restriccions_id}}</span>
 </td>
 <!-- 
@@ -11,27 +13,39 @@
 </td>
 -->
 <td>
-<!--
-<input class="xxform-control" type="checkbox" name="options2" [checked]="restric.restriccions_data == '2011-01-01'" (change)="changeVal($event.target)" [disabled]="!restric.restriccions_active && false"  />
--->
+<!-- 
 
-    <input *ngIf="restric.restriccions_data != 'xxx2011-01-01'" [(ngModel)]="restric.restriccions_data" (change)="changeVal()" class="form-control"
-        placeholder="Data inici" [disabled]="!restric.restriccions_active && false"><br>
-        <input *ngIf="restric.restriccions_data != restric.restriccions_datafi" [(ngModel)]="restric.restriccions_datafi" (change)="changeVal()"
-            class="form-control" placeholder="Data final" [disabled]="!restric.restriccions_active && false">
+ <button (click)="isChecked = !isChecked" class="btn btn-alert">Base</button>
+  <input type="checkbox" [(ngModel)]="isChecked">
+-->
+<label  class="xxxform-control btn btn-default" style="display:block" [class.btn-success]="restric.restriccions_data == '2011-01-01'">BASE
+  <input class="xxform-control" type="checkbox" name="options2"  [checked]="restric.restriccions_data == '2011-01-01'" (change)="changeBase($event)" [disabled]="!restric.restriccions_active && false"  />
+</label>
+<input  *ngIf="restric.restriccions_data != '2011-01-01'"  appDateRangePick
+             (selected)="dateSelected($event)"
+             [options]="pickerOptions" type="submit"
+             class="form-control btn btn-success"/>
+
+<!--
+    <input  [(ngModel)]="restric.restriccions_data" (change)="changeVal()" class="form-control data-ini"
+        placeholder="Data inici"><br>
+        
+    <input *ngIf="restric.restriccions_data != restric.restriccions_datafi" [(ngModel)]="restric.restriccions_datafi" (change)="changeVal()"
+            class="form-control" placeholder="Data final" >
+-->
 </td>
 
 <td>
     <div class="form-group" *ngIf="restric.restriccions_data == '2011-01-01' || restric.restriccions_data != restric.restriccions_datafi">
 
 
-        <label *ngFor="let option of comboDies;let i = index" class="form-control" [class.btn-success]="restric.restriccions_dies[i+1]"   >
+        <label *ngFor="let option of comboDies;let i = index" class="form-control" [class.btn-success]="restric.restriccions_dies[i+1]"  [class.disabled]="!restric.restriccions_active" >
         <input type="checkbox" 
         name="options" value="option"  
         [(ngModel)]="restric.restriccions_dies[i+1]"  
         (change)="changeVal()" 
-         
-        [disabled]="!restric.restriccions_active && false"/> {{option.name}} 
+         [disabled]="!restric.restriccions_active"
+        /> {{option.name}} 
     </label>
     </div>
 </td>
@@ -72,7 +86,7 @@
 </td>
 
 <td>
-    <button *ngIf="!insert" (click)="deleteRestriccio(restric);$event.stopPropagation()" class="btn btn-danger">Delete</button>
+    <button *ngIf="!insert" (click)="deleteRestriccio(restric);$event.stopPropagation()" class="btn btn-danger" [disabled]="!restric.restriccions_active">Delete</button>
     <!--      <button  *ngIf="dirty && false" (click)="updateRestriccio(restric);$event.stopPropagation()">Save</button>-->
     <button *ngIf="dirty && insert" (click)="insertRestriccio(restric);$event.stopPropagation()" class="btn btn-primary">Add</button>
 

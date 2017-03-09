@@ -1,1 +1,9 @@
 label.form-control{display:inline !important}
+label.disabled{
+	background:lightgray;
+    border: white solid 1px;
+}
+
+.calendar .daterangepicker td.available.available.in-range {
+    background-color: #357ebd  !important;
+}

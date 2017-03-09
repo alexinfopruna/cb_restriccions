@@ -10,7 +10,12 @@ restriccions_data: Date;
     restriccions_active: boolean;
     restriccions_description: string;
 
-    constructor(){}
+    constructor(){
+this.restriccions_data = new Date("2011-01-01");
+this.restriccions_datafi = new Date("2011-01-01");
+
+
+    }
 
     public setNew(){
     this.restriccions_id=0;
@@ -20,7 +25,7 @@ this.restriccions_cotxets=0;
 this.restriccions_data;;
     this.restriccions_hora='11:00';
    this.restriccions_datafi;
-    this.restriccions_dies=[0,0,0,0,0,,1,1];
+    this.restriccions_dies=[0,0,0,0,0,0,1,1];
     this.restriccions_active = false;
     this.restriccions_description= "";
     }

@@ -45,7 +45,7 @@ dataBase:Date=new Date('2011-01-01');
     
     onUpdate(restriccio){
       console.log("onUpdate");
-      this.restriccionsService.updateRestriccio(restriccio).then(restriccions => {        });
+      this.restriccionsService.updateRestriccio(restriccio).then(restriccions => { this.getRestriccions();       });
     }  
 
     onInsert(restriccio){

@@ -6,6 +6,15 @@ import {AppSettings} from './constants';
 import { RestriccionsService } from '../restriccions.service';
 import { Subject } from 'rxjs/Subject';
 
+import {DateRangePickDirective} from './date-range-pick.directive';
+import { DateRange } from './date-range';
+
+
+1
+import * as moment from 'moment/moment';
+
+declare var $:any;
+
 @Component({
   selector: '[app-filarestriccio]',
   templateUrl: './filarestriccio.component.html',
@@ -17,7 +26,7 @@ import { Subject } from 'rxjs/Subject';
 
 export class FilarestriccioComponent implements OnInit {
  @Input() restric:Restriccio;
-@Input() insert:Boolean;
+ @Input() insert:Boolean;
  @Output() onDelete: EventEmitter<Restriccio> = new EventEmitter();
  @Output() onUpdate: EventEmitter<Restriccio> = new EventEmitter();
  @Output() onInsert: EventEmitter<Restriccio> = new EventEmitter();
@@ -33,37 +42,61 @@ export class FilarestriccioComponent implements OnInit {
  dirty: Boolean = true;
  checkBase:Boolean = true;
 
+ dateRange:DateRange=new DateRange({});
+ pickerOptions: Object;
 
-constructor(
-    private restriccionsService: RestriccionsService
-  ){}
+constructor(private restriccionsService: RestriccionsService){}
 
+ dateSelected(dateRange:DateRange) {
+    this.dateRange=dateRange;
+    this.restric.restriccions_data = dateRange.startDate;
+    this.restric.restriccions_datafi = dateRange.endDate;
 
-
-  ngOnInit() {
-        let  d:Date = new Date('2000-01-01');
-        this.disabled=!this.restric.restriccions_active;
-        //checkBase = 
+     this.updateRestriccio(this.restric);
   }
 
 
-changeVal(e){
-  /*
-if (e.name=='options2') {
- if (e.checked) {
-  this.restric.restriccions_data =  new Date("2011-01-01");
-   this.restric.restriccions_datafi = this.restric.restriccions_data;
+  ngOnInit() {
+        this.disabled=!this.restric.restriccions_active;
+ 
+if (typeof this.restric.restriccions_data == undefined) this.restric.restriccions_data = new Date("2011-01-01");
+if (typeof this.restric.restriccions_datafi == undefined) this.restric.restriccions_datafi=this.restric.restriccions_data;
+ 
+var dataIni = moment(this.restric.restriccions_data,'YYYY-MM-DD').format("YYYY-MM-DD");
+var dataFi =  moment(this.restric.restriccions_datafi,'YYYY-MM-DD').format("YYYY-MM-DD");
 
- }
- else {
-  
-     this.restric.restriccions_data = null;
-    this.restric.restriccions_datafi = this.restric.restriccions_data;
- }
+//console.log(dataIni+ " --- "+ dataFi);
+
+this.pickerOptions = {
+    'showDropdowns': true,
+    'showWeekNumbers': true,
+    'timePickerIncrement': 5,
+    'autoApply': true,
+    "startDate": dataIni,
+    "endDate": dataFi,
+    locale: {
+      format: 'YYYY-MM-DD'
+    },
+  };
+        $(".data-ini").css("color", "red");
+  }
+
+changeBase(e){
+// console.log(e);
+  console.log(e.target.checked);
+  if (e.target.checked) {
+    this.restric.restriccions_data = new Date("2011-01-01");
+    this.restric.restriccions_datafi = new Date("2011-01-01");
+ //   
+  }else{
+        this.restric.restriccions_data = new Date();
+        this.restric.restriccions_datafi = new Date();
+  }
+
+  this.updateRestriccio(this.restric);
 }
-*/
-  
 
+changeVal(e){
   this.updateRestriccio(this.restric);
 }
 
@@ -78,11 +111,9 @@ updateRestriccio(restriccio:Restriccio){
 
 insertRestriccio(restriccio:Restriccio){
    this.onInsert.emit(restriccio);
- 
- 
    restriccio.setNew();
-if (this.restric.restriccions_description== "%ins&") {
-  this.insert = true;
-  this.restric.restriccions_description="";}
-}
+  if (this.restric.restriccions_description== "%ins&") {
+     this.insert = true;
+     this.restric.restriccions_description="";}
+  }
 }
