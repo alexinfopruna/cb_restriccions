@@ -5,6 +5,8 @@ import { FiltreComponent } from '../filtre/filtre.component';
 import { RestriccionsService } from '../restriccions.service';
 import { Restriccio } from '../restriccio';
 
+
+
 @Component({
   selector: 'app-llistat',
   templateUrl: './llistat.component.html',
@@ -20,6 +22,7 @@ export class LlistatComponent implements OnInit {
 restriccions: Restriccio[];
 restriccioNew:Restriccio = new Restriccio();
 dataBase:Date=new Date('2011-01-01');
+busy: Promise<any>;
 
     constructor(private restriccionsService: RestriccionsService){
         this.restriccioNew.setNew();
@@ -45,7 +48,7 @@ dataBase:Date=new Date('2011-01-01');
     
     onUpdate(restriccio){
       console.log("onUpdate");
-      this.restriccionsService.updateRestriccio(restriccio).then(restriccions => { this.getRestriccions();       });
+      this.busy = this.restriccionsService.updateRestriccio(restriccio).then(restriccions => { this.getRestriccions();       });
     }  
 
     onInsert(restriccio){

@@ -5,6 +5,9 @@ import { HttpModule } from '@angular/http';
 
 import { RestriccionsService } from './restriccions.service';
 import { RestriccionRoutingModule }     from './restriccionrouting/restriccionrouting.module';
+import {BusyModule} from 'angular2-busy';
+
+
 
 // Import the ButtonsModule...
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
@@ -13,7 +16,6 @@ import { HomeComponent } from './home/home.component';
 import { LlistatComponent } from './llistat/llistat.component';
 import { FilarestriccioComponent } from './filarestriccio/filarestriccio.component';
 import { FiltreComponent } from './filtre/filtre.component';
-
 import { DateRangePickDirective } from './filarestriccio/date-range-pick.directive';
 
 @NgModule({
@@ -23,7 +25,7 @@ import { DateRangePickDirective } from './filarestriccio/date-range-pick.directi
     TestComponent,
     HomeComponent,
     FiltreComponent,
-    DateRangePickDirective    
+    DateRangePickDirective,
   ],
   
   imports: [
@@ -31,6 +33,7 @@ import { DateRangePickDirective } from './filarestriccio/date-range-pick.directi
     FormsModule,
     HttpModule,
     RestriccionRoutingModule,
+    BusyModule
   ],
   
   providers: [RestriccionsService],
