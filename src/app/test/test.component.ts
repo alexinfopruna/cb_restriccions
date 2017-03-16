@@ -3,7 +3,9 @@ import { Restriccio } from '../restriccio';
 import {AppSettings} from '../filarestriccio/constants';
 import { RestriccionsService } from '../restriccions.service';
 import { Subject } from 'rxjs/Subject';
-
+import {DateRangePickDirective} from '../filarestriccio/date-range-pick.directive';
+import { DateRange } from '../filarestriccio/date-range';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-test',
@@ -16,7 +18,7 @@ export class TestComponent implements OnInit {
  restric = new Restriccio();
  rules: Restriccio[];
  query:String;
- data:Date = new Date();
+ data:Date;
 
  comboHores = AppSettings.HORES;
  comboAdults = AppSettings.ADULTS;
@@ -30,13 +32,43 @@ export class TestComponent implements OnInit {
   constructor(private restriccionsService: RestriccionsService) { }
 
 
+dateRange:DateRange=new DateRange({});
+ pickerOptions: Object;
+
+
   ngOnInit() {
    
+/*
+this.pickerOptions = {
+    'showDropdowns': true,
+    'showWeekNumbers': true,
+    'timePickerIncrement': 5,
+    'autoApply': false,
+    "startDate": this.data,
+    "endDate": this.data,
+    'autoClose': false,
+    'singleMonth': true,
+    'singleDate' : true,
+    'inline':true,
+	
+	alwaysOpen:true,
+    locale: {
+      format: 'YYYY-MM-DD',
+    },
+  };
+*/
+  this.pickerOptions = {
+	singleMonth: true,
+	showShortcuts: false,
+	showTopbar: false,
+selectForward: true,
 
-
-  //  this.startDate = new Date(2017, 3, 24);
-    //this.restric.restriccions_data = new Date("2017-03-20");
-   
+    locale: {
+      format: 'YYYY-MM-DD',
+    },
+  };
+ 
+   //this.data = moment(this.data,'YYYY-MM-DD').format("YYYY-MM-DD");
   }
 
 

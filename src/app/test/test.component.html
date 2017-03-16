@@ -16,8 +16,17 @@
 <tbody>
     <tr>
 <td>
+<input  *ngIf="restric.restriccions_data != '2011-01-01'"  appDateRangePick
+             (selected)="dateSelected($event)"
+             [options]="pickerOptions" type="submit"
+             class="form-control btn btn-success"
+             [(ngModel)]="restric.restriccions_data" 
+             placeholder="Data"
+             (xxxchange)="changeVal()" 
+             />
+<!--
   <input [(ngModel)]="restric.restriccions_data"    (xxxchange)="changeVal()" placeholder="Data" class="form-control" ><br>
-  
+  -->
   
 </td>
 
@@ -65,22 +74,24 @@
 <hr>
 <h3>Regles que hi intervenen</h3>
 <div class="well">
-<ul class=" list-group">
+<table class=" table  table-bordered ">
 
-        <li *ngFor="let rule of rules"  class="list-group-item list-group-item-info">
-            {{rule.restriccions_id}} |
-            {{rule.restriccions_descripcio}}|
-            <{{rule.restriccions_data}}···
-            {{rule.restriccions_datafi}}> | 
-            {{rule.restriccions_dies}} | 
-            {{rule.restriccions_adults}} |
-            {{rule.restriccions_nens}} |
-            {{rule.restriccions_cotxets}} 
-             >>>>>>> {{rule.restriccions_hora}}
+        <tr *ngFor="let rule of rules"  class="enabled">
+           <td> {{rule.restriccions_id}} </td>
+          
+            <td>{{rule.restriccions_data}} - {{rule.restriccions_datafi}}</td>
+           
+            <td>{{rule.restriccions_dies}} </td>
+           <td> {{rule.restriccions_adults}} </td>
+           <td> {{rule.restriccions_nens}} </td>
+           <td> {{rule.restriccions_cotxets}}  </td>
+           <td> {{rule.restriccions_hora}} </td>
             
-            </li>
+            </tr>
 
-</ul>
+</table>
+
+
 </div>
 <br>
 <br>

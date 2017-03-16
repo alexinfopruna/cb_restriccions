@@ -18,11 +18,13 @@ export class DateRangePickDirective {
   }
 
   ngOnInit() {
-    /*
- this.options: Object = {
-   stratDate:'2017-03-17';
-   endDate:'2017-03-27';
-   };*/
+    /*  */
+this.options  = {
+'singleDate' : true,
+}
+
+  
+
 console.log(this.options);
 //if (typeof this.options.startDate != undefined) console.log(this.options.startDate);
 

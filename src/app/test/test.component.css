@@ -1,17 +1,2 @@
-lixxx{
-    padding:5px;
-    background-color:lightgrey;
-    border:Lavender   solid 1px;
-    border-radius: 6px;
-    display:inline;
-    margin:4px;
-    }
 
-    trxxxx{
-     padding:5px;
-    background-color:lightgrey;
-    border:Lavender   solid 1px;
-    border-radius: 6px;
-    display:inline;
-    margin:4px;       
-    }
+    .enabled{background-color: #d9edf7;}

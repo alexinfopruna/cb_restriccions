@@ -1,11 +1,10 @@
-import { Component, OnInit, OnChanges,ViewChild, SimpleChanges } from '@angular/core';
+import { Component, ViewContainerRef, OnInit, OnChanges,ViewChild, SimpleChanges } from '@angular/core';
 
 import { FilarestriccioComponent } from '../filarestriccio/filarestriccio.component';
 import { FiltreComponent } from '../filtre/filtre.component';
 import { RestriccionsService } from '../restriccions.service';
 import { Restriccio } from '../restriccio';
-
-
+import {BusyModule} from 'angular2-busy';
 
 @Component({
   selector: 'app-llistat',
@@ -22,9 +21,8 @@ export class LlistatComponent implements OnInit {
 restriccions: Restriccio[];
 restriccioNew:Restriccio = new Restriccio();
 dataBase:Date=new Date('2011-01-01');
-busy: Promise<any>;
 
-    constructor(private restriccionsService: RestriccionsService){
+    constructor(private restriccionsService: RestriccionsService    ){
         this.restriccioNew.setNew();
       }
 
@@ -35,6 +33,7 @@ busy: Promise<any>;
     test(){
         this.restriccionsService.test();
     }
+
 
     getRestriccions(){
         this.restriccionsService.getRestriccions().then(restriccions => { return this.restriccions=restriccions;} );
@@ -48,7 +47,7 @@ busy: Promise<any>;
     
     onUpdate(restriccio){
       console.log("onUpdate");
-      this.busy = this.restriccionsService.updateRestriccio(restriccio).then(restriccions => { this.getRestriccions();       });
+      this.restriccionsService.updateRestriccio(restriccio).then(restriccions => { this.getRestriccions();       });
     }  
 
     onInsert(restriccio){

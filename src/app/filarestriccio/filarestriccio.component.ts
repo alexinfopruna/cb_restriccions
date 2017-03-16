@@ -8,9 +8,6 @@ import { Subject } from 'rxjs/Subject';
 
 import {DateRangePickDirective} from './date-range-pick.directive';
 import { DateRange } from './date-range';
-
-
-1
 import * as moment from 'moment/moment';
 
 declare var $:any;

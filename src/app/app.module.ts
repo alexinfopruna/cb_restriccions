@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { RestriccionsService } from './restriccions.service';
 import { RestriccionRoutingModule }     from './restriccionrouting/restriccionrouting.module';
-import {BusyModule} from 'angular2-busy';
+import {BusyModule, BusyConfig} from 'angular2-busy';
 
 
 
@@ -33,7 +33,7 @@ import { DateRangePickDirective } from './filarestriccio/date-range-pick.directi
     FormsModule,
     HttpModule,
     RestriccionRoutingModule,
-    BusyModule
+    //BusyModule
   ],
   
   providers: [RestriccionsService],
