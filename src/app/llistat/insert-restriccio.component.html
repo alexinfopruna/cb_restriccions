@@ -1,0 +1,29 @@
+<h1 md-dialog-title>Crea nova restricció</h1>
+<div md-dialog-content>
+
+
+
+
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+            
+                <th>Adults</th>
+                <th>Nens</th>
+                <th>Cotxets</th>
+                <th>Hora</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr app-filarestriccio [insert]="true" [(restric)]="restriccioNew" (onInsert)="onInsert($event)"></tr>
+        </tbody>
+    </table>
+</div>
+<div md-dialog-actions>
+
+    <button md-raised-button (click)="dialogRef.close('close')">Tanca</button>
+    <div></div>
+     <button md-raised-button color="accent" (click)="dialogRef.close('Save')">Afegir</button>
+</div>

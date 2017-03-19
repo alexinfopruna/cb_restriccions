@@ -2,6 +2,7 @@ h1{
     font-size: 52px;
 }
 
+
 .caixa{
 padding:20px;
 margin:20px;
@@ -10,11 +11,13 @@ color: DimGray;
 
 }
 .enabled{background-color: #d9edf7;}
-
-.xxxxxodd{background-color: lightblue;}
-.xxxxxxeven{background-color: lightblue;}
-.xxxxxxeven{background-color: lighten(red, 20%);}
 .base{background-color:#dff0d8;}
-.xxxxbase{background-color: lighten(lightgreen, 20%);}
 .disabled{background-color: #eee;color:darkgrey}
 label.form-control{display:inline !important}
+
+
+ .mat-dialog-container {
+     position:absolute;
+     top:-5000px;
+     
+       display:none !important;   box-shadow: none;     background-color:transparent !important;} 

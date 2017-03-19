@@ -6,17 +6,18 @@ import { HttpModule } from '@angular/http';
 import { RestriccionsService } from './restriccions.service';
 import { RestriccionRoutingModule }     from './restriccionrouting/restriccionrouting.module';
 import {BusyModule, BusyConfig} from 'angular2-busy';
-
-
+import 'hammerjs';
+import { MaterialModule } from '@angular/material';
 
 // Import the ButtonsModule...
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { TestComponent } from './test/test.component';
 import { HomeComponent } from './home/home.component';
-import { LlistatComponent } from './llistat/llistat.component';
+import { LlistatComponent, DialogOverviewExampleDialog } from './llistat/llistat.component';
 import { FilarestriccioComponent } from './filarestriccio/filarestriccio.component';
 import { FiltreComponent } from './filtre/filtre.component';
 import { DateRangePickDirective } from './filarestriccio/date-range-pick.directive';
+
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { DateRangePickDirective } from './filarestriccio/date-range-pick.directi
     HomeComponent,
     FiltreComponent,
     DateRangePickDirective,
+    DialogOverviewExampleDialog
   ],
   
   imports: [
@@ -33,9 +35,10 @@ import { DateRangePickDirective } from './filarestriccio/date-range-pick.directi
     FormsModule,
     HttpModule,
     RestriccionRoutingModule,
+    MaterialModule,
     //BusyModule
   ],
-  
+  entryComponents: [DialogOverviewExampleDialog],
   providers: [RestriccionsService],
   bootstrap: [HomeComponent]
 })

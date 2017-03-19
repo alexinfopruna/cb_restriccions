@@ -12,7 +12,7 @@
    <input *ngIf="!insert"  [(ngModel)]="restric.restriccions_description"   (change)="changeVal()" class="form-control"  placeholder="Descripció" [disabled]="!restric.restriccions_active && false"> 
 </td>
 -->
-<td>
+<td  *ngIf="!insert">
 <!-- 
 
  <button (click)="isChecked = !isChecked" class="btn btn-alert">Base</button>
@@ -35,7 +35,7 @@
 -->
 </td>
 
-<td>
+<td  *ngIf="!insert">
     <div class="form-group" *ngIf="restric.restriccions_data == '2011-01-01' || restric.restriccions_data != restric.restriccions_datafi">
 
 
@@ -86,8 +86,8 @@
 </td>
 
 <td>
-    <button *ngIf="!insert" (click)="deleteRestriccio(restric);$event.stopPropagation()" class="btn btn-danger" [disabled]="!restric.restriccions_active">Delete</button>
+    <button *ngIf="!insert" (click)="deleteRestriccio(restric);$event.stopPropagation()" class="btn btn-danger" >Delete</button>
     <!--      <button  *ngIf="dirty && false" (click)="updateRestriccio(restric);$event.stopPropagation()">Save</button>-->
-    <button *ngIf="dirty && insert" (click)="insertRestriccio(restric);$event.stopPropagation()" class="btn btn-primary">Add</button>
+ <!--     <button *ngIf="dirty && insert" (click)="insertRestriccio(restric);$event.stopPropagation()" class="btn btn-primary">Add</button> -->
 
 </td>
