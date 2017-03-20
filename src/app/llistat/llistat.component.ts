@@ -82,7 +82,7 @@ loading:Boolean=false;
 
       toggleLoading(l:Boolean=true){
         this.loading=l;
-      //  if(l) this.dialog.open(DialogOverviewExampleDialog);
+       // if(l) this.dialog.open(DialogOverviewExampleDialog);
        // else this.dialog.closeAll();
       }
 
