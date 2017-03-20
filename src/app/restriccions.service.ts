@@ -13,7 +13,25 @@ import 'rxjs/add/operator/map';
 export class RestriccionsService {
   private headers = new Headers({'Content-Type': 'application/json'});
   private restriccionsUrl = 'http://cbwp-localhost/cb-reserves/taules/Restriccions.php';  // URL to web api
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+    let url = window.location.hostname;
+    
+    switch( url){
+      case 'www.can-borrel.com':
+          this.restriccionsUrl = 'http://www.can-borrell.com/cb-reserves/taules/Restriccions.php';
+          break; 
+      case 'can-borrell.com':
+          this.restriccionsUrl = 'http://can-borrell.com/cb-reserves/taules/Restriccions.php'; 
+      break;
+      case 'dev.can-borrell.com':
+        this.restriccionsUrl = 'http://dev.can-borrell.com/cb-reserves/taules/Restriccions.php'; 
+      break;
+      default:
+        this.restriccionsUrl = 'http://cbwp-localhost/cb-reserves/taules/Restriccions.php'; 
+    }
+console.log("HOST..." + this.restriccionsUrl );
+
+   }
 
   /* */
     test(){
