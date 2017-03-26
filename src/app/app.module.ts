@@ -17,6 +17,7 @@ import { LlistatComponent, DialogOverviewExampleDialog } from './llistat/llistat
 import { FilarestriccioComponent } from './filarestriccio/filarestriccio.component';
 import { FiltreComponent } from './filtre/filtre.component';
 import { DateRangePickDirective } from './filarestriccio/date-range-pick.directive';
+import { LongclickDirective } from './filarestriccio/longclick.directive';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { DateRangePickDirective } from './filarestriccio/date-range-pick.directi
     HomeComponent,
     FiltreComponent,
     DateRangePickDirective,
-    DialogOverviewExampleDialog
+    DialogOverviewExampleDialog,
+    LongclickDirective
   ],
   
   imports: [

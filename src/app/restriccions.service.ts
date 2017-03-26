@@ -17,7 +17,7 @@ export class RestriccionsService {
     let url = window.location.hostname;
     
     switch( url){
-      case 'www.can-borrel.com':
+      case 'www.can-borrell.com':
           this.restriccionsUrl = 'http://www.can-borrell.com/cb-reserves/taules/Restriccions.php';
           break; 
       case 'can-borrell.com':
@@ -28,8 +28,9 @@ export class RestriccionsService {
       break;
       default:
         this.restriccionsUrl = 'http://cbwp-localhost/cb-reserves/taules/Restriccions.php'; 
+        
     }
-console.log("HOST..." + this.restriccionsUrl );
+//console.log("HOST..." + this.restriccionsUrl );
 
    }
 
@@ -48,15 +49,15 @@ console.log("HOST..." + this.restriccionsUrl );
       .toPromise()
       .then(response => {
         return response.json().data
-      });
-    //  .catch(this.handleError);              
+      })
+      .catch(this.handleError);              
   }
 
 
   filtreRestriccions(restriccio:Restriccio):Promise<Restriccio[]>{
     const url = `${this.restriccionsUrl}`;
     let dades = {data:restriccio,accio:'getrestriccions'};
-    return this.http.put(url, JSON.stringify(dades), {headers: this.headers})
+    return this.http.post(url, JSON.stringify(dades), {headers: this.headers})
         .toPromise()
         .then(response => {
           return response.json().data
@@ -68,7 +69,8 @@ console.log("HOST..." + this.restriccionsUrl );
   deleteRestriccio(restriccio:Restriccio){
     const url = `${this.restriccionsUrl}`;
     let dades = {data:restriccio,accio:'deleterestriccio'};
-        return this.http.put(url, JSON.stringify(dades), {headers: this.headers})
+
+        return this.http.post(url, JSON.stringify(dades), {headers: this.headers})
           .toPromise()
           .then(response => { return response.json().data})
           .catch(this.handleError);  
@@ -76,11 +78,14 @@ console.log("HOST..." + this.restriccionsUrl );
 
 
   updateRestriccio(restriccio: Restriccio){
-    const url = `${this.restriccionsUrl}`;
+    let url = `${this.restriccionsUrl}`;
+    //url = 'http://www.can-borrell.com/cb-reserves/taules/Restriccions.php';
+    
     let dades = {data:restriccio,accio:'updaterestriccio'};
-
+    //console.log("pssssssssss");
+    //console.log(JSON.stringify(dades));
      return this.http
-      .put(url, JSON.stringify(dades), {headers: this.headers})
+      .post(url, JSON.stringify(dades), {headers: this.headers})
       .toPromise()
       .then(() => restriccio)
       .catch(this.handleError);   
@@ -92,7 +97,7 @@ console.log("HOST..." + this.restriccionsUrl );
     let dades = {data:restriccio,accio:'insertrestriccio'};
 
      return this.http
-      .put(url, JSON.stringify(dades), {headers: this.headers})
+      .post(url, JSON.stringify(dades), {headers: this.headers})
       .toPromise()
       .then(() => restriccio)
       .catch(this.handleError);   
@@ -110,15 +115,17 @@ console.log("HOST..." + this.restriccionsUrl );
         let dades = {'data':dat,'accio':'horesdisponibles'};
 
         return this.http
-          .put(url, JSON.stringify(dades), {headers: this.headers})
+          .post(url, JSON.stringify(dades), {headers: this.headers})
           .toPromise()
-          .then((resposta) =>  {return resposta;})
+          .then((resposta) =>  {console.log(resposta);return resposta;})
           .catch(this.handleError);   
   }
 
   private handleError(error: any): Promise<any> {
-    console.error('zzzzzAn error occurred', error); // for demo purposes only
-    console.log('zzzzzAn error occurred', error); // for demo purposes only
+  //  alert("ERROR " + error + "\n\n Assegura't d'estar logat al panel per accedir a la gestió de restriccions");
+    console.error('An error occurred', error); // for demo purposes only
+    
+    document.write("ERROR --> Assegura't d'estar logat al panel per accedir a la gestió de restriccions");
     return Promise.reject(error.message || error);
   }
 }

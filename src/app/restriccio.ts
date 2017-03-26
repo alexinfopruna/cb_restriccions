@@ -5,10 +5,12 @@ restriccions_nens: number;
 restriccions_cotxets: number;
 restriccions_data: Date;
     restriccions_hora: string;
+    
    restriccions_datafi: Date;
     restriccions_dies: number[];
     restriccions_active: boolean;
     restriccions_description: string;
+    restriccions_hores: number[];
 
     constructor(){
 this.restriccions_data = new Date("2011-01-01");

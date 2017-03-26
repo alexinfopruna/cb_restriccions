@@ -28,6 +28,39 @@ export class AppSettings {
     {val:"17:00", name:"17:00"},
 ];
 
+
+   public static  binHORES = [
+   // {val:-1, name:" Tot "},
+    {val:1, name:"11:00"},
+    {val:2, name:"11:15"},
+    {val:3, name:"11:30"},
+    {val:3, name:"11:45"},    
+    {val:4, name:"12:00"},
+    {val:5, name:"12:15"},
+    {val:6, name:"12:30"},
+    {val:7, name:"12:45"},
+    {val:8, name:"13:00"},
+    {val:9, name:"13:15"},
+    {val:10, name:"13:30"},
+    {val:11, name:"13:45"},    
+    {val:12, name:"14:00"},
+    {val:13, name:"14:15"},
+    {val:14, name:"14:30"},
+    {val:15, name:"14:45"},    
+    {val:16, name:"15:00"},    
+    {val:17, name:"15:15"},
+    {val:18, name:"15:30"},
+    {val:19, name:"15:45"},    
+    {val:20, name:"16:00"},    
+    {val:21, name:"16:15"},
+    {val:22, name:"16:30"},
+    {val:23, name:"16:45"},
+    {val:24, name:"17:00"},
+];
+
+
+
+
   public static  ADULTS = [
     {val:-1, name:"Tot"},
     {val:0, name:"0"},

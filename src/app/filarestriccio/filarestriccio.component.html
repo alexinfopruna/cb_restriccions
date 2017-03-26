@@ -1,93 +1,98 @@
 <td>
-<label *ngIf="!insert" class="form-control" [class.btn-success]="restric.restriccions_active"   >
-           <input  type="checkbox" (change)="changeVal()" [(ngModel)]="restric.restriccions_active">
 
-    </label>
+    <md-checkbox *ngIf="!insert"  [(ngModel)]="restric.restriccions_active"></md-checkbox>
    </td>     
  <td>
-    <span *ngIf="!insert">{{restric.restriccions_id}}</span>
+    <span *ngIf="!insert"  >{{restric.restriccions_id}}</span>
 </td>
-<!-- 
-<td>
-   <input *ngIf="!insert"  [(ngModel)]="restric.restriccions_description"   (change)="changeVal()" class="form-control"  placeholder="Descripció" [disabled]="!restric.restriccions_active && false"> 
-</td>
--->
-<td  *ngIf="!insert">
-<!-- 
 
- <button (click)="isChecked = !isChecked" class="btn btn-alert">Base</button>
-  <input type="checkbox" [(ngModel)]="isChecked">
--->
-<label  class="xxxform-control btn btn-default" style="display:block" [class.btn-success]="restric.restriccions_data == '2011-01-01'">BASE
-  <input class="xxform-control" type="checkbox" name="options2"  [checked]="restric.restriccions_data == '2011-01-01'" (change)="changeBase($event)" [disabled]="!restric.restriccions_active && false"  />
-</label>
-<input  *ngIf="restric.restriccions_data != '2011-01-01'"  appDateRangePick
+<td  *ngIf="!insert">
+
+<input  *ngIf="TRUE || restric.restriccions_data != '2011-01-01'"  [class.disabled]="!restric.restriccions_active" 
+            appDateRangePick
+            
              (selected)="dateSelected($event)"
              [options]="pickerOptions" type="submit"
              class="form-control btn btn-success"/>
 
-<!--
-    <input  [(ngModel)]="restric.restriccions_data" (change)="changeVal()" class="form-control data-ini"
-        placeholder="Data inici"><br>
-        
-    <input *ngIf="restric.restriccions_data != restric.restriccions_datafi" [(ngModel)]="restric.restriccions_datafi" (change)="changeVal()"
-            class="form-control" placeholder="Data final" >
--->
-</td>
+<label  [class.disabled]="!restric.restriccions_active" class="btn btn-default" style="display:block" [class.btn-success]="restric.restriccions_data == '2011-01-01'">BASE
+  <input class="" type="checkbox" name="options2"  [checked]="restric.restriccions_data == '2011-01-01'" (change)="changeBase($event)" [disabled]="!restric.restriccions_active && false"  />
+</label>
 
-<td  *ngIf="!insert">
+
+
+
     <div class="form-group" *ngIf="restric.restriccions_data == '2011-01-01' || restric.restriccions_data != restric.restriccions_datafi">
-
-
-        <label *ngFor="let option of comboDies;let i = index" class="form-control" [class.btn-success]="restric.restriccions_dies[i+1]"  [class.disabled]="!restric.restriccions_active" >
+        <label *ngFor="let option of comboDies;let i = index" 
+        class="form-control" 
+        
+        [class.btn-success]="restric.restriccions_dies[i+1]"  
+        [class.disabled]="!restric.restriccions_active" >
         <input type="checkbox" 
         name="options" value="option"  
         [(ngModel)]="restric.restriccions_dies[i+1]"  
         (change)="changeVal()" 
-         [disabled]="!restric.restriccions_active"
+        
         /> {{option.name}} 
     </label>
     </div>
+
 </td>
 
-<td>
-    <!--
- <select [hidden]="true" [disabled]="!restric.restriccions_active && false" class="form-control" > // value is a string or number
-    <option *ngFor="let oper of comboOper" >{{oper.name}}</option>
-</select>
--->
-    <select [(ngModel)]="restric.restriccions_adults" (change)="changeVal()" [disabled]="!restric.restriccions_active && false"
+
+<td colspan="3" >
+<div style="display:flex">
+   <label>Adults: 
+       <select [(ngModel)]="restric.restriccions_adults" (change)="changeVal()" [disabled]="!restric.restriccions_active && false"
         class="form-control"> // value is a string or number
         <option *ngFor="let adult of comboAdults" [value]="adult.name">{{adult.name}}</option>
         </select>
-</td>
+</label>
 
-<td>
-
+<label>Nens: 
     <select [(ngModel)]="restric.restriccions_nens" (change)="changeVal()" [disabled]="!restric.restriccions_active && false"
         class="form-control"> // value is a string or number
         <option *ngFor="let nen of comboNens" [value]="nen.name">{{nen.name}}</option>
         </select>
+</label>
 
-</td>
-<td>
-
+<label >Cotxets: 
     <select [(ngModel)]="restric.restriccions_cotxets" (change)="changeVal()" [disabled]="!restric.restriccions_active && false"
         class="form-control"> // value is a string or number.val
         <option *ngFor="let cotxet of comboCotxets" [value]="cotxet.name">{{cotxet.name}}</option>
         </select>
-</td>
-<td>
+</label>
+</div>
+<br>
+    <div class="form-group" *ngIf="!insert" >
+        <label *ngFor="let option of combobinHores;let i = index" 
+        class="form-control" 
+        [class.btn-success]="restric.restriccions_hores[i+1]"  
+        [class.disabled]="!restric.restriccions_active" 
+        style="padding:3px 12px"
+        long-press
 
-    <select [(ngModel)]="restric.restriccions_hora" (change)="changeVal()" [disabled]="!restric.restriccions_active && false"
-        class="form-control"> // value is a string or number
-        <option *ngFor="let hora of comboHores" [value]="hora.val">{{hora.name}}</option>
-        </select>
+        (dblclick) = "func2($event)"
+        id="hora-{{i}}"
+        
+        >
+        <input type="checkbox" 
+        name="options" value="option"  
+        [(ngModel)]="restric.restriccions_hores[i+1]"  
+        (change)="changeVal()" 
+        
+        
+         
+        /> {{option.name}} 
+    </label>
+    </div>
+
+
 </td>
+
+
 
 <td>
     <button *ngIf="!insert" (click)="deleteRestriccio(restric);$event.stopPropagation()" class="btn btn-danger" >Delete</button>
-    <!--      <button  *ngIf="dirty && false" (click)="updateRestriccio(restric);$event.stopPropagation()">Save</button>-->
- <!--     <button *ngIf="dirty && insert" (click)="insertRestriccio(restric);$event.stopPropagation()" class="btn btn-primary">Add</button> -->
 
 </td>

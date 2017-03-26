@@ -21,6 +21,7 @@ export class TestComponent implements OnInit {
  data:Date;
 
  comboHores = AppSettings.HORES;
+ combobinHores = AppSettings.binHORES;
  comboAdults = AppSettings.ADULTS;
  comboNens = AppSettings.NENS;
  comboCotxets = AppSettings.COTXETS;
@@ -37,51 +38,48 @@ dateRange:DateRange=new DateRange({});
 
 
   ngOnInit() {
-   
-/*
-this.pickerOptions = {
-    'showDropdowns': true,
-    'showWeekNumbers': true,
-    'timePickerIncrement': 5,
-    'autoApply': false,
-    "startDate": this.data,
-    "endDate": this.data,
-    'autoClose': false,
-    'singleMonth': true,
-    'singleDate' : true,
-    'inline':true,
-	
-	alwaysOpen:true,
-    locale: {
-      format: 'YYYY-MM-DD',
-    },
-  };
-*/
-  this.pickerOptions = {
-	singleMonth: true,
-	showShortcuts: false,
-	showTopbar: false,
-selectForward: true,
+  this.comboAdults.splice(17, 17);
+  this.comboAdults.splice(0,1);
+  this.comboNens.splice(7, 5);
+  this.comboNens.splice(0,1);
+  this.comboCotxets.splice(0,1);
 
-    locale: {
-      format: 'YYYY-MM-DD',
-    },
-  };
- 
-   //this.data = moment(this.data,'YYYY-MM-DD').format("YYYY-MM-DD");
-  }
+this.restric.restriccions_adults=0;
+this.restric.restriccions_nens=0;
+this.restric.restriccions_cotxets=0;
+
+this.pickerOptions = {
+   'startDate':new Date(),
+    'endDate':new Date(),
+    "singleDatePicker": true,
+    "inline":true,
+    locale: {format: 'YYYY/MM/DD'}
+};
+}
 
 
   changeVal(){
+    //console.log(this.restric);return;
+    if (this.restric.restriccions_adults==0){
+      alert("********* Has de poar adults més gran de zero!! ***********");
+      return;
+    }
           this.restriccionsService.testRestriccions(this.restric).then(restriccions => { 
           
-            console.log(JSON.parse(restriccions._body).hores);
+            console.log(JSON.parse(restriccions._body).rules);
             this.hores=JSON.parse(restriccions._body).hores;
-             this.query=JSON.parse(restriccions._body).query;
-            
-  this.rules=JSON.parse(restriccions._body).rules;
-          
-        } );
+            this.query=JSON.parse(restriccions._body).query;
+            this.rules=JSON.parse(restriccions._body).rules;
+        });
+        
+  }
+
+  dateSelected(dateRange:DateRange){
+    this.dateRange=dateRange;
+    this.restric.restriccions_data = dateRange.startDate;
+    this.restric.restriccions_datafi = dateRange.endDate;
+
+
   }
 
 }

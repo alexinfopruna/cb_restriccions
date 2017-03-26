@@ -20,7 +20,7 @@
              (selected)="dateSelected($event)"
              [options]="pickerOptions" type="submit"
              class="form-control btn btn-success"
-             [(ngModel)]="restric.restriccions_data" 
+             
              placeholder="Data"
              (xxxchange)="changeVal()" 
              />
@@ -30,42 +30,32 @@
   
 </td>
 
-
 <td>
-
-  
-
    <select [(ngModel)]="restric.restriccions_adults" (xxxchange)="changeVal()" placeholder="Adults"   class="form-control" > // value is a string or number
     <option *ngFor="let adult of comboAdults" [value]="adult.val">{{adult.name}}</option>
 </select>
 </td>
-<td>
-  
+
+<td>  
    <select [(ngModel)]="restric.restriccions_nens" (xxxchange)="changeVal()" placeholder="Nens"   class="form-control" > // value is a string or number
     <option *ngFor="let nen of comboNens" [value]="nen.val">{{nen.name}}</option>
 </select>
-   
 </td>
+
 <td>
-    
    <select [(ngModel)]="restric.restriccions_cotxets" (xxxchange)="changeVal()" placeholder="Cotxets"   class="form-control" > // value is a string or number.val
     <option *ngFor="let cotxet of comboCotxets" [value]="cotxet.val">{{cotxet.name}}</option>
 </select>
 </td>
 <td>
 <button  (click)="changeVal();$event.stopPropagation()"  class="btn btn-info" >Hores disponbles</button>
-
 </td>
-
-
     </tr>
 
 </tbody>
 </table>
 <ul class="btn-group">
-
         <li *ngFor="let hora of hores" class="btn btn-primary">{{hora}}</li>
-
 </ul>
 
 <br>
@@ -73,24 +63,21 @@
 
 <hr>
 <h3>Regles que hi intervenen</h3>
-<div class="well">
+<h5>Només afecta la primera</h5>
+<div *ngIf="rules" class="well">
 <table class=" table  table-bordered ">
-
-        <tr *ngFor="let rule of rules"  class="enabled">
+        <tr  *ngFor="let rule of rules"  class="enabled">
            <td> {{rule.restriccions_id}} </td>
-          
             <td>{{rule.restriccions_data}} - {{rule.restriccions_datafi}}</td>
-           
             <td>{{rule.restriccions_dies}} </td>
            <td> {{rule.restriccions_adults}} </td>
            <td> {{rule.restriccions_nens}} </td>
            <td> {{rule.restriccions_cotxets}}  </td>
-           <td> {{rule.restriccions_hora}} </td>
-            
-            </tr>
-
+           <td> 
+<label  *ngFor="let hora of rule.restriccions_hores" class="form-control" stype="display:inline">{{hora}}</label>
+</td>          
+</tr>
 </table>
-
 
 </div>
 <br>

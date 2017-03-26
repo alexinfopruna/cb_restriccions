@@ -1,41 +1,30 @@
  <div>
 
-
 <nav>
-
 <button md-fab   color="primary" class="md-bottom-right" (click)="openDialog()" title="Afegir restricció">
    <md-icon class="md-24">add</md-icon>
 </button>
-  <!--
-<button   md-fab   color="primary" class="md-button md-fab md-fab-bottom-right " (click)="openDialog()" title="Afegir restricció">
-   <md-icon class="xxxmd-24">add</md-icon>
-</button>
--->
 </nav>
-
-
-
-
-
-
 
 <div><br><br></div>
 
 <md-progress-bar *ngIf ="loading" mode="indeterminate"> </md-progress-bar>
+
 <table class="table  table-bordered">
 <thead>
   <tr>
   <th>Actiu</th>
   <th>Id</th>
   <!--<th>Descripció</th>-->
-  <th>Data</th>
-  <th>Dies</th>
+  <th style="min-width:339px">Data</th>
+
   <th>Adults</th>
   <th>Nens</th>
   <th>Cotxets</th>
-  <th>Hora</th>
+ 
   </tr>
 </thead>
+
 <tbody>
     <tr app-filarestriccio  
     *ngFor="let restriccio of restriccions; let i = index; let even = even; let odd = odd" 
@@ -51,5 +40,4 @@
 </table>
 
 <a id="insert"></a>
-
 </div>

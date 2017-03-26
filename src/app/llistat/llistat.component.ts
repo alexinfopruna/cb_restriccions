@@ -52,7 +52,6 @@ loading:Boolean=false;
     }
 
 
-
     getRestriccions(){
       this.toggleLoading();
         this.restriccionsService.getRestriccions().then(restriccions => { this.toggleLoading(false);return this.restriccions=restriccions;} );
@@ -82,8 +81,6 @@ loading:Boolean=false;
 
       toggleLoading(l:Boolean=true){
         this.loading=l;
-       // if(l) this.dialog.open(DialogOverviewExampleDialog);
-       // else this.dialog.closeAll();
       }
 
       openDialog() {
@@ -91,8 +88,6 @@ loading:Boolean=false;
     this.dialogRef.componentInstance.param1 = "test value";
     this.dialogRef.componentInstance.restriccioNew = this.restriccioNew;
      this.dialogRef.afterClosed().subscribe(result => {
-       console.log(result);
-       console.log(this.restriccioNew);
        if (result=="Save") this.onInsert(this.restriccioNew)
       this.dialogRef = null;});
   }

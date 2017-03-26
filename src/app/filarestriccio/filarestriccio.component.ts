@@ -8,6 +8,7 @@ import { Subject } from 'rxjs/Subject';
 
 import {DateRangePickDirective} from './date-range-pick.directive';
 import { DateRange } from './date-range';
+//import { LongclickDirective } from './longclick.directive';
 import * as moment from 'moment/moment';
 
 declare var $:any;
@@ -29,6 +30,7 @@ export class FilarestriccioComponent implements OnInit {
  @Output() onInsert: EventEmitter<Restriccio> = new EventEmitter();
 
  comboHores = AppSettings.HORES;
+ combobinHores = AppSettings.binHORES;
  comboAdults = AppSettings.ADULTS;
  comboNens = AppSettings.NENS;
  comboCotxets = AppSettings.COTXETS;
@@ -54,28 +56,29 @@ constructor(private restriccionsService: RestriccionsService){}
 
 
   ngOnInit() {
+   // this.dateRange.startDate = this.restric.restriccions_data;
+   // this.dateRange.endDate = this.restric.restriccions_datafi;
+   // console.log(this.dateRange);
         this.disabled=!this.restric.restriccions_active;
- 
+
+ /*
 if (typeof this.restric.restriccions_data == undefined) this.restric.restriccions_data = new Date("2011-01-01");
 if (typeof this.restric.restriccions_datafi == undefined) this.restric.restriccions_datafi=this.restric.restriccions_data;
- 
-var dataIni = moment(this.restric.restriccions_data,'YYYY-MM-DD').format("YYYY-MM-DD");
-var dataFi =  moment(this.restric.restriccions_datafi,'YYYY-MM-DD').format("YYYY-MM-DD");
+ */
+//var dataIni = moment(this.restric.restriccions_data,'YYYY-MM-DD').format("YYYY-MM-DD");
+//var dataFi =  moment(this.restric.restriccions_datafi,'YYYY-MM-DD').format("YYYY-MM-DD");
 
-//console.log(dataIni+ " --- "+ dataFi);
 
-this.pickerOptions = {
-    'showDropdowns': true,
-    'showWeekNumbers': true,
-    'timePickerIncrement': 5,
-    'autoApply': true,
-    "startDate": dataIni,
-    "endDate": dataFi,
+ this.pickerOptions = {
+  //  "singleDatePicker": true,
+  'startDate': this.restric.restriccions_data,
+  'endDate': this.restric.restriccions_datafi,
+
+  //  "inline":true,
     locale: {
-      format: 'YYYY-MM-DD'
-    },
-  };
-        $(".data-ini").css("color", "red");
+format: 'YYYY/MM/DD',
+}
+};
   }
 
 changeBase(e){
@@ -93,6 +96,22 @@ changeBase(e){
   this.updateRestriccio(this.restric);
 }
 
+func2(event){
+  let inn = parseInt(event.target.id.split("-")[1]);
+  
+  inn +=2;
+  //console.log(inn);
+
+  for (let i=0;i<inn;i++){
+      this.restric.restriccions_hores[i]=0;
+  }
+  for (let i=inn;i<27;i++){
+      this.restric.restriccions_hores[i]=1;
+  }
+
+  //console.log(this.restric);
+  this.updateRestriccio(this.restric);
+}
 changeVal(e){
   this.updateRestriccio(this.restric);
 }
@@ -102,7 +121,9 @@ deleteRestriccio(restriccio:Restriccio){
 }
 
 updateRestriccio(restriccio:Restriccio){
-  console.log(restriccio);
+ // console.log(restriccio);
+ restriccio.restriccions_dies = restriccio.restriccions_dies.map(val => +val);
+   if (!this.insert)  restriccio.restriccions_hores = restriccio.restriccions_hores.map(val => +val);
    this.onUpdate.emit(restriccio);
 }
 

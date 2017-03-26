@@ -1,9 +1,30 @@
 label.form-control{display:inline !important}
-label.disabled{
+label.disabledxxx{
 	background:lightgray;
     border: white solid 1px;
 }
 
+
+.btn-success.disabled{
+    	background:gray;
+    border: white solid 1px;
+}
+ label.disabled{
+    	background:lightgray;
+    border: white solid 1px;
+}
+
+.disabled:hover{
+    background:lightgreen;
+}
+
+
 .calendar .daterangepicker td.available.available.in-range {
     background-color: #357ebd  !important;
+}
+
+label input[type=checkbox]{display:none;}
+
+td label.form-control[_ngcontent-lvf-41] {
+    padding: 3px !important;
 }

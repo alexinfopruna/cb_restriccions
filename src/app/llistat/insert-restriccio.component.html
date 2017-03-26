@@ -5,19 +5,9 @@
 
 
     <table>
-        <thead>
-            <tr>
-                <th></th>
-                <th></th>
-            
-                <th>Adults</th>
-                <th>Nens</th>
-                <th>Cotxets</th>
-                <th>Hora</th>
-            </tr>
-        </thead>
+       
         <tbody>
-            <tr app-filarestriccio [insert]="true" [(restric)]="restriccioNew" (onInsert)="onInsert($event)"></tr>
+            <tr app-filarestriccio [insert]="true" [(restric)]="restriccioNew" (onInsert)="onInsert($event)" ></tr>
         </tbody>
     </table>
 </div>
