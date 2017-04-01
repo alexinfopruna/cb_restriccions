@@ -1,6 +1,6 @@
 <td>
 
-    <md-checkbox *ngIf="!insert"  [(ngModel)]="restric.restriccions_active"></md-checkbox>
+    <md-checkbox *ngIf="!insert" (change)="changeVal()"   [(ngModel)]="restric.restriccions_active"></md-checkbox>
    </td>     
  <td>
     <span *ngIf="!insert"  >{{restric.restriccions_id}}</span>
@@ -37,19 +37,28 @@
     </label>
     </div>
 
+    <div><textarea [(ngModel)]="restric.restriccions_description">{{restric.restriccions_description}}</textarea></div>
+
 </td>
 
 
 <td colspan="3" >
 <div style="display:flex">
-   <label>Adults: 
+   <label>Suma: 
+       <select [(ngModel)]="restric.restriccions_suma" (change)="changeVal()" [disabled]="!restric.restriccions_active && false"
+        class="form-control"> // value is a string or number
+        <option *ngFor="let suma of comboSuma" [value]="suma.name">{{suma.name}}</option>
+        </select>
+</label>
+
+   <label *ngIf="restric.restriccions_suma<1">Adults: 
        <select [(ngModel)]="restric.restriccions_adults" (change)="changeVal()" [disabled]="!restric.restriccions_active && false"
         class="form-control"> // value is a string or number
         <option *ngFor="let adult of comboAdults" [value]="adult.name">{{adult.name}}</option>
         </select>
 </label>
 
-<label>Nens: 
+<label >Nens: 
     <select [(ngModel)]="restric.restriccions_nens" (change)="changeVal()" [disabled]="!restric.restriccions_active && false"
         class="form-control"> // value is a string or number
         <option *ngFor="let nen of comboNens" [value]="nen.name">{{nen.name}}</option>
@@ -62,6 +71,8 @@
         <option *ngFor="let cotxet of comboCotxets" [value]="cotxet.name">{{cotxet.name}}</option>
         </select>
 </label>
+
+
 </div>
 <br>
     <div class="form-group" *ngIf="!insert" >

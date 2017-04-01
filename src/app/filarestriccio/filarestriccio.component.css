@@ -28,3 +28,5 @@ label input[type=checkbox]{display:none;}
 td label.form-control[_ngcontent-lvf-41] {
     padding: 3px !important;
 }
+
+textarea{width:100%;}

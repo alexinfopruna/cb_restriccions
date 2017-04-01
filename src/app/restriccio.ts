@@ -7,6 +7,7 @@ restriccions_data: Date;
     restriccions_hora: string;
     
    restriccions_datafi: Date;
+    restriccions_suma: number[];
     restriccions_dies: number[];
     restriccions_active: boolean;
     restriccions_description: string;

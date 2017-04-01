@@ -20,16 +20,17 @@ export class TestComponent implements OnInit {
  query:String;
  data:Date;
 
- comboHores = AppSettings.HORES;
- combobinHores = AppSettings.binHORES;
- comboAdults = AppSettings.ADULTS;
- comboNens = AppSettings.NENS;
- comboCotxets = AppSettings.COTXETS;
- comboOper = AppSettings.OPER;
- comboDies = AppSettings.DIES;
+ comboHores = AppSettings.HORES.slice();
+ combobinHores = AppSettings.binHORES.slice();
+ comboAdults = AppSettings.ADULTS.slice();
+ comboNens = AppSettings.NENS.slice();
+ comboCotxets = AppSettings.COTXETS.slice();
+ comboOper = AppSettings.OPER.slice();
+ comboDies = AppSettings.DIES.slice();
 
 
  hores:String[]=["Dona valors a les peticions per testejar les hores disponibles"];
+ horesReals:String[]=["Dona valors a les peticions per testejar les hores disponibles"];
   constructor(private restriccionsService: RestriccionsService) { }
 
 
@@ -55,8 +56,9 @@ this.pickerOptions = {
     "inline":true,
     locale: {format: 'YYYY/MM/DD'}
 };
-}
 
+    this.dateSelected(this.dateRange);
+}
 
   changeVal(){
     //console.log(this.restric);return;
@@ -64,22 +66,20 @@ this.pickerOptions = {
       alert("********* Has de poar adults més gran de zero!! ***********");
       return;
     }
-          this.restriccionsService.testRestriccions(this.restric).then(restriccions => { 
-          
+
+
+          this.restriccionsService.testRestriccions(this.restric).then(restriccions => {      
             console.log(JSON.parse(restriccions._body).rules);
             this.hores=JSON.parse(restriccions._body).hores;
+            this.horesReals=JSON.parse(restriccions._body).horesReals;
             this.query=JSON.parse(restriccions._body).query;
             this.rules=JSON.parse(restriccions._body).rules;
-        });
-        
+        });  
   }
 
   dateSelected(dateRange:DateRange){
     this.dateRange=dateRange;
     this.restric.restriccions_data = dateRange.startDate;
     this.restric.restriccions_datafi = dateRange.endDate;
-
-
   }
-
 }

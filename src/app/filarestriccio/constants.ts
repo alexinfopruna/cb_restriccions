@@ -1,14 +1,14 @@
 export class AppSettings {
    public static  HORES = [
     {val:0, name:"Tot"},
-    {val:"11:00", name:"11:00"},
+/*    {val:"11:00", name:"11:00"},
     {val:"11:15", name:"11:15"},
     {val:"11:30", name:"11:30"},
     {val:"11:45", name:"11:45"},    
     {val:"12:00", name:"12:00"},
     {val:"12:15", name:"12:15"},
     {val:"12:30", name:"12:30"},
-    {val:"12:45", name:"12:45"},
+    {val:"12:45", name:"12:45"},*/
     {val:"13:00", name:"13:00"},
     {val:"13:15", name:"13:15"},
     {val:"13:30", name:"13:30"},
@@ -31,14 +31,14 @@ export class AppSettings {
 
    public static  binHORES = [
    // {val:-1, name:" Tot "},
-    {val:1, name:"11:00"},
+  /*  {val:1, name:"11:00"},
     {val:2, name:"11:15"},
     {val:3, name:"11:30"},
     {val:3, name:"11:45"},    
     {val:4, name:"12:00"},
     {val:5, name:"12:15"},
     {val:6, name:"12:30"},
-    {val:7, name:"12:45"},
+    {val:7, name:"12:45"},*/
     {val:8, name:"13:00"},
     {val:9, name:"13:15"},
     {val:10, name:"13:30"},
@@ -59,6 +59,34 @@ export class AppSettings {
 ];
 
 
+public static  SUMA = [
+    {val:-1, name:"Tot"},
+    {val:0, name:"0"},
+    {val:1, name:"1"},
+    {val:2, name:"2"},
+    {val:3, name:"3"},
+    {val:4, name:"4"},
+    {val:5, name:"5"},
+    {val:6, name:"6"},
+    {val:7, name:"7"},
+    {val:8, name:"8"},    
+    {val:9, name:"9"},
+    {val:10, name:"10"},
+    {val:11, name:"11"},
+    {val:12, name:"12"},
+    {val:13, name:"13"},
+    {val:14, name:"14"},
+    {val:15, name:"15"},
+    {val:16, name:"16"},
+    {val:17, name:"17"},
+    {val:18, name:"18"},    
+    {val:19, name:"19"},
+    {val:20, name:"20"},
+  
+  
+     {val:31, name:"Parell"},   
+       {val:32, name:"Senar"},  
+];
 
 
   public static  ADULTS = [
@@ -95,7 +123,7 @@ export class AppSettings {
     {val:29, name:">14"},
     {val:30, name:">15"},   
      {val:31, name:"Parell"},   
-       {val:31, name:"Senar"},  
+       {val:32, name:"Senar"},  
 ];
 
 

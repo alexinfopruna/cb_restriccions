@@ -18,16 +18,16 @@ export class RestriccionsService {
     
     switch( url){
       case 'www.can-borrell.com':
-          this.restriccionsUrl = 'http://www.can-borrell.com/cb-reserves/taules/Restriccions.php';
+          this.restriccionsUrl = 'https://www.can-borrell.com/cb-reserves/taules/Restriccions.php';
           break; 
       case 'can-borrell.com':
-          this.restriccionsUrl = 'http://can-borrell.com/cb-reserves/taules/Restriccions.php'; 
+          this.restriccionsUrl = 'https://can-borrell.com/cb-reserves/taules/Restriccions.php'; 
       break;
       case 'dev.can-borrell.com':
-        this.restriccionsUrl = 'http://dev.can-borrell.com/cb-reserves/taules/Restriccions.php'; 
+        this.restriccionsUrl = 'https://dev.can-borrell.com/cb-reserves/taules/Restriccions.php'; 
       break;
       default:
-        this.restriccionsUrl = 'http://cbwp-localhost/cb-reserves/taules/Restriccions.php'; 
+        this.restriccionsUrl = 'https://cbwp-localhost/cb-reserves/taules/Restriccions.php'; 
         
     }
 //console.log("HOST..." + this.restriccionsUrl );
@@ -107,7 +107,6 @@ export class RestriccionsService {
   testRestriccions(restriccio: Restriccio){
       const url = `${this.restriccionsUrl}`;
       let dat={data:new Date('2011-01-01'),adults:0,nens:0,cotxets:0};
-      
         dat.data = restriccio.restriccions_data || new Date('2011-01-01');
         dat.adults = restriccio.restriccions_adults || 0;
         dat.nens=restriccio.restriccions_nens || 0;

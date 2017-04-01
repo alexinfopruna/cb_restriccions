@@ -31,6 +31,7 @@ export class FilarestriccioComponent implements OnInit {
 
  comboHores = AppSettings.HORES;
  combobinHores = AppSettings.binHORES;
+ comboSuma = AppSettings.SUMA;
  comboAdults = AppSettings.ADULTS;
  comboNens = AppSettings.NENS;
  comboCotxets = AppSettings.COTXETS;
@@ -56,18 +57,7 @@ constructor(private restriccionsService: RestriccionsService){}
 
 
   ngOnInit() {
-   // this.dateRange.startDate = this.restric.restriccions_data;
-   // this.dateRange.endDate = this.restric.restriccions_datafi;
-   // console.log(this.dateRange);
         this.disabled=!this.restric.restriccions_active;
-
- /*
-if (typeof this.restric.restriccions_data == undefined) this.restric.restriccions_data = new Date("2011-01-01");
-if (typeof this.restric.restriccions_datafi == undefined) this.restric.restriccions_datafi=this.restric.restriccions_data;
- */
-//var dataIni = moment(this.restric.restriccions_data,'YYYY-MM-DD').format("YYYY-MM-DD");
-//var dataFi =  moment(this.restric.restriccions_datafi,'YYYY-MM-DD').format("YYYY-MM-DD");
-
 
  this.pickerOptions = {
   //  "singleDatePicker": true,

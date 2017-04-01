@@ -54,8 +54,25 @@
 
 </tbody>
 </table>
+<hr>
+<h3>
+Hores sense restriccions
+
+</h3>
 <ul class="btn-group">
+     <li *ngIf="!hores.length"  class="btn btn-warning">No hi ha taules / hores</li>
         <li *ngFor="let hora of hores" class="btn btn-primary">{{hora}}</li>
+</ul>
+
+<br>
+<br>
+<hr>
+<h3>
+Hores amb restriccions
+
+</h3>
+<ul class="btn-group">
+        <li *ngFor="let hora of horesReals" class="btn btn-primary">{{hora}}</li>
 </ul>
 
 <br>
@@ -66,10 +83,19 @@
 <h5>Només afecta la primera</h5>
 <div *ngIf="rules" class="well">
 <table class=" table  table-bordered ">
+    <thead>
+        <th>Id</th>
+        <th>Data</th>
+        <th>Adults</th>
+        <th>Nens</th>
+        <th>Cotxets</th>
+        <th>Hores</th>
+    </thead>
+    <tbody>
         <tr  *ngFor="let rule of rules"  class="enabled">
            <td> {{rule.restriccions_id}} </td>
             <td>{{rule.restriccions_data}} - {{rule.restriccions_datafi}}</td>
-            <td>{{rule.restriccions_dies}} </td>
+           
            <td> {{rule.restriccions_adults}} </td>
            <td> {{rule.restriccions_nens}} </td>
            <td> {{rule.restriccions_cotxets}}  </td>
@@ -77,6 +103,7 @@
 <label  *ngFor="let hora of rule.restriccions_hores" class="form-control" stype="display:inline">{{hora}}</label>
 </td>          
 </tr>
+</tbody>
 </table>
 
 </div>
