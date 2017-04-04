@@ -17,7 +17,8 @@ import { LlistatComponent, DialogOverviewExampleDialog } from './llistat/llistat
 import { FilarestriccioComponent } from './filarestriccio/filarestriccio.component';
 import { FiltreComponent } from './filtre/filtre.component';
 import { DateRangePickDirective } from './filarestriccio/date-range-pick.directive';
-import { LongclickDirective } from './filarestriccio/longclick.directive';
+//import { LongclickDirective } from './filarestriccio/longclick.directive';
+//import { ValorSelectPipe } from './valorselectpipe';
 
 
 @NgModule({
@@ -29,7 +30,9 @@ import { LongclickDirective } from './filarestriccio/longclick.directive';
     FiltreComponent,
     DateRangePickDirective,
     DialogOverviewExampleDialog,
-    LongclickDirective
+    //LongclickDirective,
+    //ValorSelectPipe
+   
   ],
   
   imports: [
@@ -37,12 +40,10 @@ import { LongclickDirective } from './filarestriccio/longclick.directive';
     FormsModule,
     HttpModule,
     RestriccionRoutingModule,
-    MaterialModule,
-    //BusyModule
+    MaterialModule
   ],
   entryComponents: [DialogOverviewExampleDialog],
   providers: [RestriccionsService],
   bootstrap: [HomeComponent]
 })
 export class AppModule { }
-

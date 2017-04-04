@@ -45,9 +45,9 @@ dateRange:DateRange=new DateRange({});
   this.comboNens.splice(0,1);
   this.comboCotxets.splice(0,1);
 
-this.restric.restriccions_adults=0;
-this.restric.restriccions_nens=0;
-this.restric.restriccions_cotxets=0;
+this.restric.restriccions_adults="0";
+this.restric.restriccions_nens="0";
+this.restric.restriccions_cotxets="0";
 
 this.pickerOptions = {
    'startDate':new Date(),
@@ -62,7 +62,7 @@ this.pickerOptions = {
 
   changeVal(){
     //console.log(this.restric);return;
-    if (this.restric.restriccions_adults==0){
+    if (this.restric.restriccions_adults=="0"){
       alert("********* Has de poar adults més gran de zero!! ***********");
       return;
     }

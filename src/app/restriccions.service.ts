@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import { Restriccio } from './restriccio';
 import { Observable }     from 'rxjs/Observable';
+
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 
@@ -45,6 +46,7 @@ export class RestriccionsService {
 
   getRestriccions():Promise<Restriccio[]>{
     const url = `${this.restriccionsUrl}`;
+    //let dades = {data:restriccio,accio:'getrestriccions'};
     return this.http.get(url)
       .toPromise()
       .then(response => {
@@ -57,6 +59,7 @@ export class RestriccionsService {
   filtreRestriccions(restriccio:Restriccio):Promise<Restriccio[]>{
     const url = `${this.restriccionsUrl}`;
     let dades = {data:restriccio,accio:'getrestriccions'};
+    console.log(restriccio);
     return this.http.post(url, JSON.stringify(dades), {headers: this.headers})
         .toPromise()
         .then(response => {
@@ -79,11 +82,8 @@ export class RestriccionsService {
 
   updateRestriccio(restriccio: Restriccio){
     let url = `${this.restriccionsUrl}`;
-    //url = 'http://www.can-borrell.com/cb-reserves/taules/Restriccions.php';
     
     let dades = {data:restriccio,accio:'updaterestriccio'};
-    //console.log("pssssssssss");
-    //console.log(JSON.stringify(dades));
      return this.http
       .post(url, JSON.stringify(dades), {headers: this.headers})
       .toPromise()
@@ -95,12 +95,14 @@ export class RestriccionsService {
   insertRestriccio(restriccio: Restriccio){
     const url = `${this.restriccionsUrl}`;
     let dades = {data:restriccio,accio:'insertrestriccio'};
+console.log(restriccio);
 
      return this.http
       .post(url, JSON.stringify(dades), {headers: this.headers})
       .toPromise()
       .then(() => restriccio)
-      .catch(this.handleError);   
+      .catch(this.handleError);
+         
   } 
 
 

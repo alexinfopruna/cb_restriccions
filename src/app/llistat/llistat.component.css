@@ -23,3 +23,40 @@ label.form-control{display:inline !important}
        display:none !important;   box-shadow: none;     background-color:transparent !important;} 
 
 
+label[_ngcontent-yph-40] input {
+    display: none;
+}
+
+#filtre-hores input{display:none;}
+
+.bt-peke{width:32px;height:32px;}
+
+#filtre{display:flex;}
+#data{width:250px;}
+
+.mr10{margin-right:10px;}
+
+.calendar .daterangepicker td.available.available.in-range {
+    background-color: #357ebd  !important;
+}
+
+label.form-control{display:inline !important}
+label.disabledxxx{
+	background:lightgray;
+    border: white solid 1px;
+}
+/*
+
+.btn-success.disabled{
+    	background:gray;
+    border: white solid 1px;
+}
+ label.disabled{
+    	background:lightgray;
+    border: white solid 1px;
+}
+
+.disabled:hover{
+    background:lightgreen;
+}
+*/

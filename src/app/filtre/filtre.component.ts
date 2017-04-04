@@ -35,9 +35,9 @@ export class FiltreComponent implements OnInit {
   //  if (this.restric.restriccions_data == null)  this.restric.restriccions_data=new Date("2011-01-01");
     if (this.restric.restriccions_datafi == null)  this.restric.restriccions_datafi=new Date("3011-01-01");
 
-    if (this.restric.restriccions_nens==-1) this.restric.restriccions_nens=null;
-    if (this.restric.restriccions_adults==-1) this.restric.restriccions_adults=null;
-    if (this.restric.restriccions_cotxets==-1) this.restric.restriccions_cotxets=null;    
+    if (this.restric.restriccions_nens=="Tot") this.restric.restriccions_nens=null;
+    if (this.restric.restriccions_adults=="Tot") this.restric.restriccions_adults=null;
+    if (this.restric.restriccions_cotxets=="Tot") this.restric.restriccions_cotxets=null;    
     this.onFiltre.emit(this.restric);
   }
 

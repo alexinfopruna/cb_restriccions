@@ -1,4 +1,69 @@
+
+
  <div>
+
+
+
+<div class="xxxwell">
+<h3>Filtre</h3>
+Posa condicions per mostrar una part de les regles
+
+<br>
+<br>
+<div>
+
+
+<div id="filtre">
+  <div id="data" class="mr10">
+<input  *ngIf="TRUE || restric.restriccions_data != '2011-01-01'"   
+            appDateRangePick
+            
+             (selected)="dateSelected($event)"
+             [options]="pickerOptions" type="submit"
+             class="form-control btn btn-success"/>
+
+<label  [class.disabled]="!restric.restriccions_active" class="btn btn-default" style="display:block" [class.btn-success]="restric.restriccions_data == '2011-01-01'">BASE
+  <input class="" type="checkbox" name="options2"  [checked]="restric.restriccions_data == '2011-01-01'" (change)="changeBase($event)" [disabled]="!restric.restriccions_active && false"  />
+</label>
+  </div>
+
+<div style="display:flex" >
+   <label class="mr10">Coberts:
+       <select [(ngModel)]="restric.restriccions_suma" (change)="changeVal()"
+        class="form-control"> // value is a string or number
+        <option *ngFor="let suma of comboSuma" [value]="suma.name">{{suma.name}}</option>
+        </select>
+</label>
+
+
+   <label class="mr10">Adults:
+       <select [(ngModel)]="restric.restriccions_adults"  (change)="changeVal()"
+        class="form-control"> // value is a string or number
+        <option *ngFor="let adult of comboAdults" [value]="adult.name">{{adult.name}}</option>
+        </select>
+</label>
+
+<label class="mr10">Nens:
+    <select [(ngModel)]="restric.restriccions_nens" (change)="changeVal()" 
+        class="form-control"> // value is a string or number
+        <option *ngFor="let nen of comboNens" [value]="nen.name">{{nen.name}}</option>
+        </select>
+</label>
+
+<label class="mr10">Cotxets: 
+    <select [(ngModel)]="restric.restriccions_cotxets" (change)="changeVal()" 
+        class="form-control"> // value is a string or number.val
+        <option *ngFor="let cotxet of comboCotxets" [value]="cotxet.name">{{cotxet.name}}</option>
+        </select>
+</label>
+
+ <!--   <button *ngIf="!insert" (click)="reset();$event.stopPropagation()" class="btn btn-success" >Reset</button> -->
+
+</div>
+</div>
+
+
+
 
 <nav>
 <button md-fab   color="primary" class="md-bottom-right" (click)="openDialog()" title="Afegir restricció">
@@ -7,20 +72,57 @@
 </nav>
 
 <div><br><br></div>
+</div>
+
+
+<div class="well">
+<!-- HORES -->
+
+Pots editar les hores una a una per cada regla.
+Per modificar moltes regles simultàniament selecciona les regles que vulguis editar i estableix les hores des de la botonera de sobre
+
+<br>
+<div style="display:flex">
+    <div class="form-group" id="filtre-hores">
+        <label *ngFor="let option of combobinHores;let i = index" 
+        class="form-control" 
+        [class.btn-success]="restric.restriccions_hores[i+1]"  
+        
+        style="padding:3px 3px"
+        long-press
+
+        (dblclick) = "func2($event)"
+        id="hora-{{i}}"
+        
+        >
+        <input type="checkbox" 
+        name="options" value="option"  
+        [(ngModel)]="restric.restriccions_hores[i+1]"  
+         
+        /> {{option.name}} 
+    </label>
+    </div>
+<button  color="accent" class="md-bottom-right bt-peke" (click)="assignaHores()" title="Estableix hores">
+   <md-icon class="md-18">play_arrow</md-icon>
+</button>
+</div>
 
 <md-progress-bar *ngIf ="loading" mode="indeterminate"> </md-progress-bar>
 
 <table class="table  table-bordered">
 <thead>
   <tr>
-  <th>Actiu</th>
-  <th>Id</th>
+  <th>
+    <md-checkbox *ngIf="!insert" (click)="selectAll()"></md-checkbox>
+    
+  </th>
+  <th>Actiu / Id</th>
   <!--<th>Descripció</th>-->
-  <th style="min-width:339px">Data</th>
+  <th >Ad/Nen</th>
 
-  <th>Adults</th>
-  <th>Nens</th>
-  <th>Cotxets</th>
+  <th>Hores</th>
+  <th></th>
+  <th></th>
  
   </tr>
 </thead>
@@ -38,6 +140,4 @@
     ></tr>
 </tbody>
 </table>
-
-<a id="insert"></a>
 </div>

@@ -1,17 +1,18 @@
 export class Restriccio{
     restriccions_id: number;
-restriccions_adults: number;
-restriccions_nens: number;  
-restriccions_cotxets: number;
+restriccions_adults: String;
+restriccions_nens: String;  
+restriccions_cotxets: String;
 restriccions_data: Date;
     restriccions_hora: string;
     
    restriccions_datafi: Date;
-    restriccions_suma: number[];
+    restriccions_suma: String;
     restriccions_dies: number[];
     restriccions_active: boolean;
+    restriccions_checked: boolean=false;
     restriccions_description: string;
-    restriccions_hores: number[];
+    restriccions_hores: number[]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1];
 
     constructor(){
 this.restriccions_data = new Date("2011-01-01");

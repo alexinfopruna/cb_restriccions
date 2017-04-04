@@ -1,13 +1,18 @@
 <td>
 
-    <md-checkbox *ngIf="!insert" (change)="changeVal()"   [(ngModel)]="restric.restriccions_active"></md-checkbox>
+    <md-checkbox *ngIf="!insert"  [disabled]="!restric.restriccions_active"  [(ngModel)]="restric.restriccions_checked"></md-checkbox>
    </td>     
  <td>
-    <span *ngIf="!insert"  >{{restric.restriccions_id}}</span>
+     <md-slide-toggle  *ngIf="!insert" [(ngModel)]="restric.restriccions_active">
+  <span   >{{restric.restriccions_id}}</span>
+</md-slide-toggle>
+    
 </td>
 
 <td  *ngIf="!insert">
-
+    {{restric.restriccions_adults}} + {{restric.restriccions_nens}}
+    <i *ngIf="restric.restriccions_cotxets >0" class="material-icons">child_friendly</i>
+    <!--
 <input  *ngIf="TRUE || restric.restriccions_data != '2011-01-01'"  [class.disabled]="!restric.restriccions_active" 
             appDateRangePick
             
@@ -18,9 +23,9 @@
 <label  [class.disabled]="!restric.restriccions_active" class="btn btn-default" style="display:block" [class.btn-success]="restric.restriccions_data == '2011-01-01'">BASE
   <input class="" type="checkbox" name="options2"  [checked]="restric.restriccions_data == '2011-01-01'" (change)="changeBase($event)" [disabled]="!restric.restriccions_active && false"  />
 </label>
+-->
 
-
-
+<!--
 
     <div class="form-group" *ngIf="restric.restriccions_data == '2011-01-01' || restric.restriccions_data != restric.restriccions_datafi">
         <label *ngFor="let option of comboDies;let i = index" 
@@ -38,49 +43,59 @@
     </div>
 
     <div><textarea [(ngModel)]="restric.restriccions_description">{{restric.restriccions_description}}</textarea></div>
-
+-->
 </td>
 
 
-<td colspan="3" >
-<div style="display:flex">
-   <label>Suma: 
+<td colspan="3">
+    
+<div style="display:flex" >
+
+    <!--
+   <label *ngIf="false">Suma: 
        <select [(ngModel)]="restric.restriccions_suma" (change)="changeVal()" [disabled]="!restric.restriccions_active && false"
         class="form-control"> // value is a string or number
         <option *ngFor="let suma of comboSuma" [value]="suma.name">{{suma.name}}</option>
         </select>
 </label>
-
-   <label *ngIf="restric.restriccions_suma<1">Adults: 
+-->
+   <label  *ngIf="insert">Adults: 
        <select [(ngModel)]="restric.restriccions_adults" (change)="changeVal()" [disabled]="!restric.restriccions_active && false"
         class="form-control"> // value is a string or number
-        <option *ngFor="let adult of comboAdults" [value]="adult.name">{{adult.name}}</option>
+        <option *ngFor="let adult of comboAdults" [value]="adult.name"> {{adult.name}}</option>
         </select>
 </label>
 
-<label >Nens: 
+<label  *ngIf="insert">Nens: 
     <select [(ngModel)]="restric.restriccions_nens" (change)="changeVal()" [disabled]="!restric.restriccions_active && false"
         class="form-control"> // value is a string or number
         <option *ngFor="let nen of comboNens" [value]="nen.name">{{nen.name}}</option>
         </select>
 </label>
 
-<label >Cotxets: 
+<label  *ngIf="insert">Cotxets: 
     <select [(ngModel)]="restric.restriccions_cotxets" (change)="changeVal()" [disabled]="!restric.restriccions_active && false"
         class="form-control"> // value is a string or number.val
         <option *ngFor="let cotxet of comboCotxets" [value]="cotxet.name">{{cotxet.name}}</option>
         </select>
 </label>
-
-
 </div>
+<br> 
+    <div class="form-group"  *ngIf="!insert">
+
+
+<label  class="btn btn-default">{{restric.restriccions_adults}}</label> 
+<label  class="btn btn-default">{{restric.restriccions_nens}}</label> 
+<label  class="btn btn-default">{{restric.restriccions_cotxets}}</label> 
+
+<label  class="btn btn-default">{{restric.restriccions_data}} - {{restric.restriccions_datafi}}</label>
 <br>
-    <div class="form-group" *ngIf="!insert" >
+
         <label *ngFor="let option of combobinHores;let i = index" 
         class="form-control" 
         [class.btn-success]="restric.restriccions_hores[i+1]"  
         [class.disabled]="!restric.restriccions_active" 
-        style="padding:3px 12px"
+        style="padding:3px 3px"
         long-press
 
         (dblclick) = "func2($event)"
@@ -90,10 +105,7 @@
         <input type="checkbox" 
         name="options" value="option"  
         [(ngModel)]="restric.restriccions_hores[i+1]"  
-        (change)="changeVal()" 
-        
-        
-         
+        (change)="changeVal()"  
         /> {{option.name}} 
     </label>
     </div>

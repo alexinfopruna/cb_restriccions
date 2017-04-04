@@ -8,7 +8,7 @@ import { Subject } from 'rxjs/Subject';
 
 import {DateRangePickDirective} from './date-range-pick.directive';
 import { DateRange } from './date-range';
-//import { LongclickDirective } from './longclick.directive';
+import { LongclickDirective } from './longclick.directive';
 import * as moment from 'moment/moment';
 
 declare var $:any;
@@ -95,7 +95,7 @@ func2(event){
   for (let i=0;i<inn;i++){
       this.restric.restriccions_hores[i]=0;
   }
-  for (let i=inn;i<27;i++){
+  for (let i=inn-1;i<27;i++){
       this.restric.restriccions_hores[i]=1;
   }
 
@@ -118,8 +118,9 @@ updateRestriccio(restriccio:Restriccio){
 }
 
 insertRestriccio(restriccio:Restriccio){
+  console.log(restriccio);
    this.onInsert.emit(restriccio);
-   restriccio.setNew();
+ //  restriccio.setNew();
   if (this.restric.restriccions_description== "%ins&") {
      this.insert = true;
      this.restric.restriccions_description="";}
