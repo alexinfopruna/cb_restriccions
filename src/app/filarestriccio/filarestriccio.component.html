@@ -2,63 +2,16 @@
 
     <md-checkbox *ngIf="!insert"  [disabled]="!restric.restriccions_active"  [(ngModel)]="restric.restriccions_checked"></md-checkbox>
    </td>     
- <td>
-     <md-slide-toggle  *ngIf="!insert" [(ngModel)]="restric.restriccions_active">
-  <span   >{{restric.restriccions_id}}</span>
-</md-slide-toggle>
+ <td  style="display:flex">
+
+ 
     
-</td>
 
-<td  *ngIf="!insert">
-    {{restric.restriccions_adults}} + {{restric.restriccions_nens}}
-    <i *ngIf="restric.restriccions_cotxets >0" class="material-icons">child_friendly</i>
-    <!--
-<input  *ngIf="TRUE || restric.restriccions_data != '2011-01-01'"  [class.disabled]="!restric.restriccions_active" 
-            appDateRangePick
-            
-             (selected)="dateSelected($event)"
-             [options]="pickerOptions" type="submit"
-             class="form-control btn btn-success"/>
-
-<label  [class.disabled]="!restric.restriccions_active" class="btn btn-default" style="display:block" [class.btn-success]="restric.restriccions_data == '2011-01-01'">BASE
-  <input class="" type="checkbox" name="options2"  [checked]="restric.restriccions_data == '2011-01-01'" (change)="changeBase($event)" [disabled]="!restric.restriccions_active && false"  />
-</label>
--->
-
-<!--
-
-    <div class="form-group" *ngIf="restric.restriccions_data == '2011-01-01' || restric.restriccions_data != restric.restriccions_datafi">
-        <label *ngFor="let option of comboDies;let i = index" 
-        class="form-control" 
-        
-        [class.btn-success]="restric.restriccions_dies[i+1]"  
-        [class.disabled]="!restric.restriccions_active" >
-        <input type="checkbox" 
-        name="options" value="option"  
-        [(ngModel)]="restric.restriccions_dies[i+1]"  
-        (change)="changeVal()" 
-        
-        /> {{option.name}} 
-    </label>
-    </div>
-
-    <div><textarea [(ngModel)]="restric.restriccions_description">{{restric.restriccions_description}}</textarea></div>
--->
-</td>
-
-
-<td colspan="3">
     
 <div style="display:flex" >
 
-    <!--
-   <label *ngIf="false">Suma: 
-       <select [(ngModel)]="restric.restriccions_suma" (change)="changeVal()" [disabled]="!restric.restriccions_active && false"
-        class="form-control"> // value is a string or number
-        <option *ngFor="let suma of comboSuma" [value]="suma.name">{{suma.name}}</option>
-        </select>
-</label>
--->
+ 
+
    <label  *ngIf="insert">Adults: 
        <select [(ngModel)]="restric.restriccions_adults" (change)="changeVal()" [disabled]="!restric.restriccions_active && false"
         class="form-control"> // value is a string or number
@@ -80,23 +33,33 @@
         </select>
 </label>
 </div>
-<br> 
+
     <div class="form-group"  *ngIf="!insert">
 
+   <label>
+     <md-slide-toggle color="primary"  *ngIf="!insert" [(ngModel)]="restric.restriccions_active"  (change)="changeVal()">
+  <span   ></span>
+</md-slide-toggle>
 
-<label  class="btn btn-default">{{restric.restriccions_adults}}</label> 
-<label  class="btn btn-default">{{restric.restriccions_nens}}</label> 
-<label  class="btn btn-default">{{restric.restriccions_cotxets}}</label> 
+    </label>
 
+<md-chip>{{restric.restriccions_adults}}</md-chip>
+<label  class="btn btn-default info-adc"><span>{{restric.restriccions_adults}}</span>  <i class="material-icons">people</i></label> 
+<label  class="btn btn-default info-adc" [class.zero]="restric.restriccions_nens == 0" ><span>{{restric.restriccions_nens}}  </span><i class="material-icons">child_care</i></label> 
+<label  class="btn btn-default info-adc" *ngIf="restric.restriccions_cotxets >0"> <span></span><i  class="material-icons">child_friendly</i></label> 
+<!--
 <label  class="btn btn-default">{{restric.restriccions_data}} - {{restric.restriccions_datafi}}</label>
+-->
 <br>
+   <button md-raised-button color="primary" *ngIf="!insert" (click)="checkAll(restric);$event.stopPropagation()" class="md-peke" ><md-icon class="md-24">forward</md-icon></button>
 
         <label *ngFor="let option of combobinHores;let i = index" 
         class="form-control" 
+         [class.btn-danger]="!restric.restriccions_hores[i+1]"  
         [class.btn-success]="restric.restriccions_hores[i+1]"  
         [class.disabled]="!restric.restriccions_active" 
         style="padding:3px 3px"
-        long-press
+        
 
         (dblclick) = "func2($event)"
         id="hora-{{i}}"
@@ -108,6 +71,8 @@
         (change)="changeVal()"  
         /> {{option.name}} 
     </label>
+
+    <button md-raised-button color="accent" *ngIf="!insert" (click)="checkNone(restric);$event.stopPropagation()"  class="md-peke"> <md-icon class="md-24">clear</md-icon></button>
     </div>
 
 
@@ -115,7 +80,7 @@
 
 
 
-<td>
-    <button *ngIf="!insert" (click)="deleteRestriccio(restric);$event.stopPropagation()" class="btn btn-danger" >Delete</button>
+<td *ngIf="false">
+    <button md-raised-button color="accent" *ngIf="!insert" (click)="deleteRestriccio(restric);$event.stopPropagation()" class="" ><md-icon class="md-24">delete</md-icon></button>
 
 </td>

@@ -4,6 +4,11 @@ label.disabledxxx{
     border: white solid 1px;
 }
 
+.info-adc {
+width:100px;
+}
+.info-adc span{vertical-align: top;font-size: 1.5em;color:#2e860a;margin-right:10px;}
+.zero, .zero span, tr.disabled span {color: darkgray;opacity:0.5}
 
 .btn-success.disabled{
     	background:gray;
@@ -28,5 +33,7 @@ label input[type=checkbox]{display:none;}
 td label.form-control[_ngcontent-lvf-41] {
     padding: 3px !important;
 }
+
+th:first-child,td:first-child{background-color:#8bc34a;}
 
 textarea{width:100%;}

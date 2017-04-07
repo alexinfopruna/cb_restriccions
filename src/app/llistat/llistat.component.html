@@ -14,6 +14,8 @@ Posa condicions per mostrar una part de les regles
 
 
 <div id="filtre">
+
+    <!--
   <div id="data" class="mr10">
 <input  *ngIf="TRUE || restric.restriccions_data != '2011-01-01'"   
             appDateRangePick
@@ -26,10 +28,11 @@ Posa condicions per mostrar una part de les regles
   <input class="" type="checkbox" name="options2"  [checked]="restric.restriccions_data == '2011-01-01'" (change)="changeBase($event)" [disabled]="!restric.restriccions_active && false"  />
 </label>
   </div>
-
+-->
 <div style="display:flex" >
    <label class="mr10">Coberts:
-       <select [(ngModel)]="restric.restriccions_suma" (change)="changeVal()"
+       <select [(ngModel)]="restric.restriccions_suma" (change)="changeVal($event);$event.stopPropagation()"
+       id="filtre-coberts"
         class="form-control"> // value is a string or number
         <option *ngFor="let suma of comboSuma" [value]="suma.name">{{suma.name}}</option>
         </select>
@@ -37,14 +40,16 @@ Posa condicions per mostrar una part de les regles
 
 
    <label class="mr10">Adults:
-       <select [(ngModel)]="restric.restriccions_adults"  (change)="changeVal()"
+       <select [(ngModel)]="restric.restriccions_adults"  (change)="changeVal($event);$event.stopPropagation()"
+       id="filtre-adults"
         class="form-control"> // value is a string or number
         <option *ngFor="let adult of comboAdults" [value]="adult.name">{{adult.name}}</option>
         </select>
 </label>
 
 <label class="mr10">Nens:
-    <select [(ngModel)]="restric.restriccions_nens" (change)="changeVal()" 
+    <select [(ngModel)]="restric.restriccions_nens" (change)="changeVal($event);$event.stopPropagation()" 
+    id="filtre-nens"
         class="form-control"> // value is a string or number
         <option *ngFor="let nen of comboNens" [value]="nen.name">{{nen.name}}</option>
         </select>
@@ -64,13 +69,14 @@ Posa condicions per mostrar una part de les regles
 
 
 
-
+ <!--
 <nav>
+   
 <button md-fab   color="primary" class="md-bottom-right" (click)="openDialog()" title="Afegir restricció">
    <md-icon class="md-24">add</md-icon>
 </button>
 </nav>
-
+-->
 <div><br><br></div>
 </div>
 
@@ -78,14 +84,22 @@ Posa condicions per mostrar una part de les regles
 <div class="well">
 <!-- HORES -->
 
-Pots editar les hores una a una per cada regla.
 Per modificar moltes regles simultàniament selecciona les regles que vulguis editar i estableix les hores des de la botonera de sobre
 
 <br>
+<table>
+<tr>
+    <td>
+    </td>
+    <td>
+    </td>
+    <td>
+
 <div style="display:flex">
     <div class="form-group" id="filtre-hores">
         <label *ngFor="let option of combobinHores;let i = index" 
         class="form-control" 
+        [class.btn-danger]="!restric.restriccions_hores[i+1]"  
         [class.btn-success]="restric.restriccions_hores[i+1]"  
         
         style="padding:3px 3px"
@@ -101,24 +115,34 @@ Per modificar moltes regles simultàniament selecciona les regles que vulguis ed
          
         /> {{option.name}} 
     </label>
-    </div>
-<button  color="accent" class="md-bottom-right bt-peke" (click)="assignaHores()" title="Estableix hores">
+
+    <button  color="primary" md-raised-button class="md-bottom-right md-peke" (click)="assignaHores()" title="Estableix hores">
    <md-icon class="md-18">play_arrow</md-icon>
 </button>
-</div>
 
+    </div>
+
+
+
+
+</div>
+    </td>
+</tr>
+</table>
 <md-progress-bar *ngIf ="loading" mode="indeterminate"> </md-progress-bar>
 
 <table class="table  table-bordered">
 <thead>
   <tr>
   <th>
-    <md-checkbox *ngIf="!insert" (click)="selectAll()"></md-checkbox>
     
+       <button md-raised-button color="primary" *ngIf="!insert" (click)="selectAll(true)" class="md-peke" ><md-icon class="md-24">check_circle</md-icon></button>
+       <button md-raised-button color="accent" *ngIf="!insert" (click)="selectAll(false)" class="md-peke" ><md-icon class="md-24">cancel</md-icon></button>
+
   </th>
-  <th>Actiu / Id</th>
+  <th>ID</th>
   <!--<th>Descripció</th>-->
-  <th >Ad/Nen</th>
+  
 
   <th>Hores</th>
   <th></th>

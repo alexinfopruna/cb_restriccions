@@ -8,7 +8,7 @@ import { Subject } from 'rxjs/Subject';
 
 import {DateRangePickDirective} from './date-range-pick.directive';
 import { DateRange } from './date-range';
-import { LongclickDirective } from './longclick.directive';
+//import { LongclickDirective } from './longclick.directive';
 import * as moment from 'moment/moment';
 
 declare var $:any;
@@ -86,11 +86,26 @@ changeBase(e){
   this.updateRestriccio(this.restric);
 }
 
-func2(event){
+   func2(event){
+      let inn = parseInt(event.target.id.split("-")[1]);
+      inn +=2;
+
+      for (let i=0;i<inn;i++){
+          this.restric.restriccions_hores[i]=0;
+      }
+      for (let i=inn-1;i<27;i++){
+          this.restric.restriccions_hores[i]=1;
+      }
+
+        console.log(this.restric);
+    }    
+
+
+func3(event){
   let inn = parseInt(event.target.id.split("-")[1]);
   
   inn +=2;
-  //console.log(inn);
+  console.log(inn);
 
   for (let i=0;i<inn;i++){
       this.restric.restriccions_hores[i]=0;
@@ -99,8 +114,8 @@ func2(event){
       this.restric.restriccions_hores[i]=1;
   }
 
-  //console.log(this.restric);
-  this.updateRestriccio(this.restric);
+
+  //this.updateRestriccio(this.restric);
 }
 changeVal(e){
   this.updateRestriccio(this.restric);
@@ -124,5 +139,18 @@ insertRestriccio(restriccio:Restriccio){
   if (this.restric.restriccions_description== "%ins&") {
      this.insert = true;
      this.restric.restriccions_description="";}
+  }
+
+  checkAll(restric){
+  for (let i=0;i<27;i++){
+      this.restric.restriccions_hores[i]=1;
+  }    
+  this.onUpdate.emit(restric);
+  }
+  checkNone(restric){
+  for (let i=0;i<27;i++){
+      this.restric.restriccions_hores[i]=0;
+  }    
+  this.onUpdate.emit(restric);
   }
 }

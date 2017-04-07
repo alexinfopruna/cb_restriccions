@@ -73,6 +73,7 @@ this.dateRange.endDate=new Date('2011-01-01');
  this.restric.restriccions_adults="Tot";
  this.restric.restriccions_nens="Tot";
  this.restric.restriccions_cotxets="Tot";
+ this.restric.restriccions_hores=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 
  
 
@@ -136,15 +137,27 @@ changeBase(e){
     
     onUpdate(restriccio){
       console.log("onUpdate");
-      this.restriccionsService.updateRestriccio(restriccio).then(restriccions => { this.getRestriccions();       });
+      this.restriccionsService.updateRestriccio(restriccio).then(restriccions => { this.getRestriccions();});
     }  
 
     onInsert(restriccio){
       console.log("onInsert");
       console.log(restriccio);
      
-      this.restriccionsService.insertRestriccio(restriccio).then(restriccions => {  this.getRestriccions();         } );
+      this.restriccionsService.insertRestriccio(restriccio).then(restriccions => {  this.getRestriccions();} );
     }
+
+    assignaHores(){
+      //let arRestriccions: Restriccio[] = [];
+      let arIdes: number[] = [];
+      this.restriccions.forEach((element) => {if (element.restriccions_checked) arIdes.push(element.restriccions_id)});
+    
+      this.restric.restriccions_hores =  this.restric.restriccions_hores.map(val => +val);
+   
+       this.restriccionsService.saveHores(arIdes, this.restric.restriccions_hores).then(restriccions => {  this.getRestriccions();} );
+    }
+
+
 
     onFiltre(restriccio){
       console.log("onFiltre");
@@ -183,21 +196,45 @@ changeBase(e){
       this.restric.restriccions_suma="6";
     }
 
-    changeVal(){
+    changeVal(event){
       this.toggleLoading();
 
-       //alert(this.restric.restriccions_adults);
-      this.onFiltre(this.restric);
+
+        if (event.srcElement.attributes[2].nodeValue=="filtre-coberts") {
+          this.restric.restriccions_adults = "Tot";
+          this.restric.restriccions_nens = "Tot";
+        }
+        if (event.srcElement.attributes[2].nodeValue=="filtre-adults" &&  this.restric.restriccions_suma != "Tot" ) {
+        // this.restric.restriccions_adults = "Tot";
+          if ( +this.restric.restriccions_adults >  +this.restric.restriccions_suma) {
+            this.restric.restriccions_adults = this.restric.restriccions_suma;
+           
+          }
+          let n= +this.restric.restriccions_suma - +this.restric.restriccions_adults;
+          
+          this.restric.restriccions_nens =  n.toString() ;
+        }
+
+        if (event.srcElement.attributes[2].nodeValue=="filtre-nens" &&  this.restric.restriccions_suma != "Tot" ) {
+        // this.restric.restriccions_adults = "Tot";
+          if ( +this.restric.restriccions_nens >  +this.restric.restriccions_suma) {
+            this.restric.restriccions_nens = this.restric.restriccions_suma;
+          }
+          let n= +this.restric.restriccions_suma - +this.restric.restriccions_nens;
+          
+          this.restric.restriccions_adults =  n.toString() ;
+          
+        }
+
+ this.onFiltre(this.restric);
+       
     }
 
-    selectAll(){
-
-        this.restriccions.forEach((element) => {if (element.restriccions_active) element.restriccions_checked=true;} );
+    selectAll(val:boolean){
+        this.restriccions.forEach((element) => {if (element.restriccions_active) element.restriccions_checked=val;} );
     }
 
-    assignaHores(){
-        this.restriccions.forEach((element) => {if (element.restriccions_checked) element.restriccions_hores= this.restric.restriccions_hores.slice(0);} );
-    }
+
 
 
     func2(event){

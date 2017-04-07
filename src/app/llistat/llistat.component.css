@@ -2,6 +2,9 @@ h1{
     font-size: 52px;
 }
 
+table td:first-child{width:165px;}
+
+
 
 .caixa{
 padding:20px;

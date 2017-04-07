@@ -105,14 +105,41 @@ console.log(restriccio);
          
   } 
 
+saveRestriccions(restriccions: Restriccio[]){
+    const url = `${this.restriccionsUrl}`;
+    let dades = {data:restriccions,accio:'saverestriccions'};
+console.log(restriccions);
+
+     return this.http
+      .post(url, JSON.stringify(dades), {headers: this.headers})
+      .toPromise()
+      .then(() => restriccions)
+      .catch(this.handleError);
+         
+  } 
+
+saveHores(ides: number[], hores:number[]){
+    const url = `${this.restriccionsUrl}`;
+    let dades = {data:hores,ides:ides, accio:'savehores'};
+console.log("AKIII "+ides);
+
+     return this.http
+      .post(url, JSON.stringify(dades), {headers: this.headers})
+      .toPromise()
+      .then(() => hores)
+      .catch(this.handleError);
+         
+  } 
+
+
 
   testRestriccions(restriccio: Restriccio){
       const url = `${this.restriccionsUrl}`;
-      let dat={data:new Date('2011-01-01'),adults:0,nens:0,cotxets:0};
+      let dat={data:new Date('2011-01-01'),adults:"0",nens:"0",cotxets:"0"};
         dat.data = restriccio.restriccions_data || new Date('2011-01-01');
-        dat.adults = restriccio.restriccions_adults || 0;
-        dat.nens=restriccio.restriccions_nens || 0;
-        dat.cotxets=restriccio.restriccions_cotxets || 0;
+        dat.adults = restriccio.restriccions_adults || "0";
+        dat.nens=restriccio.restriccions_nens || "0";
+        dat.cotxets=restriccio.restriccions_cotxets || "0";
         let dades = {'data':dat,'accio':'horesdisponibles'};
 
         return this.http

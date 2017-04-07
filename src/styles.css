@@ -1,8 +1,10 @@
 /* You can add global styles to this file, and also import other style files 
 */
 
- @import '~@angular/material/core/theming/prebuilt/indigo-pink.css';
-
+/* @import '~@angular/material/core/theming/prebuilt/indigo-pink.css';*/
+/*@import '~@angular/material/core/theming/prebuilt/purple-green.css';*/
+@import '~@angular/material/core/theming/prebuilt/palette.css';
+ 
 
 
 
@@ -14,3 +16,16 @@ bottom: 20px;
 left: auto;
 position: fixed;
 }
+
+  tr.base.disabled .info-adc span  {color: darkgray;opacity:0.5}
+    tr.base.disabled .info-adc i  {color: darkgray;opacity:0.5}
+
+button.md-peke{
+	min-width:0;
+	line-height:0;
+    padding:0;
+}
+
+    .xxxxmd-peke .material-icons{
+	font-size:15px;
+    }

@@ -63,7 +63,7 @@ this.pickerOptions = {
   changeVal(){
     //console.log(this.restric);return;
     if (this.restric.restriccions_adults=="0"){
-      alert("********* Has de poar adults més gran de zero!! ***********");
+      alert("********* Has de posar adults més gran de zero!! ***********");
       return;
     }
 
